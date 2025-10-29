@@ -1,0 +1,17 @@
+# HRMS Biometric Attendance Module - Python Dependencies
+
+# Core dependencies (optional, for enhanced functionality)
+# The module works without these in simulation mode
+
+# For REST API server
+flask>=2.0.0
+flask-cors>=3.0.10
+
+# For data handling (included in Python standard library, listed for reference)
+# json
+# dataclasses (Python 3.7+)
+# datetime
+# pathlib
+
+# Note: OpenBR is the main dependency but must be built from source
+# Follow installation instructions at: http://openbiometrics.org/docs/install/
