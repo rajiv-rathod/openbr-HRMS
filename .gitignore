@@ -14,6 +14,14 @@ build*
 scripts/results
 share/openbr/models
 
+### HRMS Attendance Module - Generated Files ###
+# Exclude generated test data and config files
+config/attendance_config.json
+data/employees/
+data/sample_faces/
+logs/attendance.json
+logs/
+
 ### Generic ###
 *.log
 *.user
