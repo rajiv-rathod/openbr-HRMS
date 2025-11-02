@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Punch - OpenBR Attendance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script async src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header-bar h1 {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-bar .user-info {
+            text-align: right;
+        }
+
+        .user-info .username {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(238, 9, 121, 0.3);
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2d3436;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .camera-container {
+            position: relative;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            aspect-ratio: 4 / 3;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1);
+        }
+
+        canvas {
+            display: none;
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'Poppins', sans-serif;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .confidence-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .confidence-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .confidence-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .confidence-display {
+            text-align: center;
+            font-size: 12px;
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .image-preview {
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder {
+            color: #ccc;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .punch-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'Poppins', sans-serif;
+            margin-top: 20px;
+        }
+
+        .punch-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(17, 153, 142, 0.3);
+        }
+
+        .punch-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .alert {
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: slideDown 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background: #d1e7dd;
+            color: #0f5132;
+            border-left: 4px solid #0f5132;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #842029;
+            border-left: 4px solid #842029;
+        }
+
+        .alert-info {
+            background: #cfe2ff;
+            color: #084298;
+            border-left: 4px solid #084298;
+        }
+
+        .info-box {
+            background: #f9f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .daily-count {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .daily-count .label {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .daily-count .count {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .detection-box {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .detection-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+            animation: blink 1s infinite;
+        }
+
+        .status-dot.active {
+            background: #11998e;
+        }
+
+        @keyframes blink {
+            0%, 49%, 100% {
+                opacity: 1;
+            }
+            50%, 99% {
+                opacity: 0.5;
+            }
+        }
+
+        .response-box {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .response-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .response-box pre {
+            background: #f9f9ff;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+            color: #667eea;
+        }
+
+        .tab-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            margin-top: 30px;
+        }
+
+        .tab-header {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #999;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-btn:hover {
+            color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-item .label {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-item .value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f0f0f0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-bar {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .camera-controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: auto;
+            }
+
+            .main-container {
+                gap: 20px;
+            }
+
+            .tab-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header -->
+        <div class="header-bar">
+            <h1>👤 Face Punch Attendance</h1>
+            <div class="user-info">
+                <div class="username">Employee ID: <span id="emp-display">Not Selected</span></div>
+                <button class="logout-btn" onclick="logout()">🚪 Back to Home</button>
+            </div>
+        </div>
+
+        <!-- Alert Container -->
+        <div id="alert-container"></div>
+
+        <!-- Main Content -->
+        <div class="main-container">
+            <!-- Camera Section -->
+            <div class="card">
+                <h2>📷 Capture Face</h2>
+                
+                <div class="camera-container">
+                    <video id="camera" autoplay playsinline></video>
+                    <canvas id="canvas"></canvas>
+                </div>
+
+                <div class="camera-controls">
+                    <button class="btn btn-primary" onclick="startCamera()">📷 Start Camera</button>
+                    <button class="btn btn-warning" onclick="capturePhoto()">📸 Capture</button>
+                    <button class="btn btn-secondary" onclick="stopCamera()">Stop</button>
+                </div>
+
+                <div class="form-group">
+                    <label>Confidence Level</label>
+                    <input type="range" class="confidence-slider" id="confidence-level" min="0.7" max="1.0" step="0.05" value="0.95" onchange="updateConfidenceDisplay()">
+                    <div class="confidence-display">Required: <strong id="confidence-display">95%</strong></div>
+                </div>
+
+                <div class="daily-count">
+                    <div class="label">Today's Punches</div>
+                    <div class="count" id="daily-punch-count">0</div>
+                </div>
+
+                <div class="detection-box">
+                    <div class="detection-status">
+                        <span class="status-dot" id="detection-status"></span>
+                        <span>Face Detection: <strong id="detection-text">Not Started</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="card">
+                <h2>✓ Punch Details</h2>
+
+                <div class="form-group">
+                    <label>Select Employee</label>
+                    <select id="punch-emp-id" onchange="updateEmpDisplay()">
+                        <option value="">Loading employees...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Punch Type</label>
+                    <select id="punch-type">
+                        <option value="IN">🔵 IN (Start Work)</option>
+                        <option value="OUT">🔴 OUT (End Work)</option>
+                    </select>
+                </div>
+
+                <div class="image-preview" id="image-preview">
+                    <p class="placeholder">📷 No image captured</p>
+                </div>
+
+                <button class="punch-button" id="punch-btn" onclick="submitPunch()" disabled>✓ Submit Punch</button>
+
+                <div class="info-box">
+                    ℹ️ <strong>Instructions:</strong>
+                    <br>1. Click "Start Camera" to begin
+                    <br>2. Face the camera clearly
+                    <br>3. Click "Capture" to take a photo
+                    <br>4. Select Employee & Punch Type
+                    <br>5. Click "Submit Punch"
+                </div>
+
+                <div class="response-box" id="response-box" style="display: none;">
+                    <h4>Response:</h4>
+                    <pre id="response-text"></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Tab -->
+        <div class="tab-container">
+            <div class="tab-header">
+                <button class="tab-btn active" onclick="switchTab('stats')">📊 Today's Stats</button>
+                <button class="tab-btn" onclick="switchTab('punches')">📜 Recent Punches</button>
+            </div>
+
+            <div id="stats" class="tab-content active">
+                <div class="stats-grid" id="stats-grid">
+                    <div class="loading-spinner"></div> Loading...
+                </div>
+            </div>
+
+            <div id="punches" class="tab-content">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f0f0f0;">
+                            <th style="padding: 12px; text-align: left; font-weight: 600; color: #333;">Time</th>
+                            <th style="padding: 12px; text-align: left; font-weight: 600; color: #333;">Employee</th>
+                            <th style="padding: 12px; text-align: left; font-weight: 600; color: #333;">Type</th>
+                            <th style="padding: 12px; text-align: left; font-weight: 600; color: #333;">Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="punches-tbody">
+                        <tr><td colspan="4" style="padding: 20px; text-align: center; color: #999;">Loading punches...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = 'https://weary-crypt-5jrjxprjv5xhvxvq-5000.app.github.dev/api/v1';
+        let token = null;
+        let video = null;
+        let canvas = null;
+        let streaming = false;
+        let capturedPhoto = null;
+        let employees = [];
+
+        // Initialize
+        window.addEventListener('load', async () => {
+            token = localStorage.getItem('biometric_token');
+            if (!token) {
+                window.location.href = '/login';
+                return;
+            }
+
+            video = document.getElementById('camera');
+            canvas = document.getElementById('canvas');
+            
+            await loadEmployees();
+            await loadTodayStats();
+        });
+
+        async function loadEmployees() {
+            try {
+                const res = await fetch(`${apiUrl}/employees`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                employees = await res.json();
+
+                const select = document.getElementById('punch-emp-id');
+                select.innerHTML = '<option value="">Select Employee...</option>';
+                employees.forEach(emp => {
+                    const option = document.createElement('option');
+                    option.value = emp.emp_id;
+                    option.textContent = `${emp.emp_id} - ${emp.name}`;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                showAlert('error', 'Failed to load employees');
+            }
+        }
+
+        async function loadTodayStats() {
+            try {
+                const today = new Date().toISOString().split('T')[0];
+                const res = await fetch(`${apiUrl}/punch-history?start_date=${today}&end_date=${today}&limit=100`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await res.json();
+
+                document.getElementById('daily-punch-count').textContent = data.count || 0;
+
+                const inCount = data.data?.filter(p => p.punch_type === 'IN').length || 0;
+                const outCount = data.data?.filter(p => p.punch_type === 'OUT').length || 0;
+
+                document.getElementById('stats-grid').innerHTML = `
+                    <div class="stat-item">
+                        <div class="label">Total Punches</div>
+                        <div class="value">${data.count || 0}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label">IN Punches</div>
+                        <div class="value">${inCount}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label">OUT Punches</div>
+                        <div class="value">${outCount}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label">Employees</div>
+                        <div class="value">${employees.length}</div>
+                    </div>
+                `;
+
+                // Load recent punches
+                let html = '';
+                if (data.data?.length === 0) {
+                    html = '<tr><td colspan="4" style="padding: 20px; text-align: center; color: #999;">No punches today</td></tr>';
+                } else {
+                    data.data?.slice(0, 10).forEach(punch => {
+                        const time = new Date(punch.timestamp).toLocaleTimeString();
+                        html += `<tr style="border-bottom: 1px solid #f0f0f0;">
+                            <td style="padding: 12px;">${time}</td>
+                            <td style="padding: 12px;">${punch.emp_id}</td>
+                            <td style="padding: 12px;"><span style="background: ${punch.punch_type === 'IN' ? '#d1e7dd' : '#f8d7da'}; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">${punch.punch_type}</span></td>
+                            <td style="padding: 12px;">${(punch.confidence * 100).toFixed(0)}%</td>
+                        </tr>`;
+                    });
+                }
+                document.getElementById('punches-tbody').innerHTML = html;
+            } catch (error) {
+                showAlert('error', 'Failed to load stats');
+            }
+        }
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: 'user',
+                        width: { ideal: 640 },
+                        height: { ideal: 480 }
+                    } 
+                });
+                video.srcObject = stream;
+                streaming = true;
+                document.getElementById('detection-status').classList.add('active');
+                document.getElementById('detection-text').textContent = 'Active';
+                showAlert('info', '✓ Camera started - Face the camera');
+            } catch (error) {
+                showAlert('error', 'Failed to access camera: ' + error.message);
+            }
+        }
+
+        function stopCamera() {
+            if (video.srcObject) {
+                video.srcObject.getTracks().forEach(track => track.stop());
+                streaming = false;
+                document.getElementById('detection-status').classList.remove('active');
+                document.getElementById('detection-text').textContent = 'Stopped';
+            }
+        }
+
+        function capturePhoto() {
+            if (!streaming) {
+                showAlert('error', 'Start camera first');
+                return;
+            }
+
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.scale(-1, 1);
+            context.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
+
+            capturedPhoto = canvas.toDataURL('image/jpeg');
+            document.getElementById('image-preview').innerHTML = `<img src="${capturedPhoto}" alt="Captured">`;
+            document.getElementById('punch-btn').disabled = false;
+
+            showAlert('success', '✓ Photo captured');
+        }
+
+        function updateConfidenceDisplay() {
+            const val = document.getElementById('confidence-level').value;
+            document.getElementById('confidence-display').textContent = Math.round(val * 100) + '%';
+        }
+
+        function updateEmpDisplay() {
+            const empId = document.getElementById('punch-emp-id').value;
+            document.getElementById('emp-display').textContent = empId || 'Not Selected';
+        }
+
+        async function submitPunch() {
+            const empId = document.getElementById('punch-emp-id').value;
+            const punchType = document.getElementById('punch-type').value;
+            const confidence = parseFloat(document.getElementById('confidence-level').value);
+
+            if (!empId) {
+                showAlert('error', 'Select employee first');
+                return;
+            }
+
+            if (!capturedPhoto) {
+                showAlert('error', 'Capture photo first');
+                return;
+            }
+
+            try {
+                document.getElementById('punch-btn').disabled = true;
+                document.getElementById('punch-btn').textContent = 'Submitting...';
+
+                const res = await fetch(`${apiUrl}/attendance/punch`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        emp_id: empId,
+                        punch_type: punchType,
+                        photo: capturedPhoto,
+                        confidence: confidence
+                    })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    showAlert('success', `✓ ${punchType} punch recorded for ${empId}`);
+                    document.getElementById('response-box').style.display = 'block';
+                    document.getElementById('response-text').textContent = JSON.stringify(data, null, 2);
+                    
+                    // Reset form
+                    document.getElementById('punch-emp-id').value = '';
+                    document.getElementById('image-preview').innerHTML = '<p class="placeholder">📷 No image captured</p>';
+                    capturedPhoto = null;
+                    document.getElementById('punch-btn').disabled = true;
+
+                    await loadTodayStats();
+                } else {
+                    showAlert('error', data.error || 'Punch failed');
+                    document.getElementById('response-box').style.display = 'block';
+                    document.getElementById('response-text').textContent = JSON.stringify(data, null, 2);
+                }
+            } catch (error) {
+                showAlert('error', 'Error: ' + error.message);
+            } finally {
+                document.getElementById('punch-btn').disabled = false;
+                document.getElementById('punch-btn').textContent = '✓ Submit Punch';
+            }
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showAlert(type, message) {
+            const container = document.getElementById('alert-container');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = message;
+            container.appendChild(alert);
+
+            setTimeout(() => alert.remove(), 4000);
+        }
+
+        function logout() {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>

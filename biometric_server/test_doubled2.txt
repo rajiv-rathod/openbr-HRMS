@@ -1,0 +1,4 @@
+500
+[(307, '/api/v1/api-token-auth/')]
+{"error":"UNIQUE constraint failed: api_tokens.token"}
+

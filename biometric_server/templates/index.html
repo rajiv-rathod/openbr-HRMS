@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBR - Biometric Attendance System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-header {
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            letter-spacing: -1px;
+        }
+
+        .hero-header p {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .feature-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .feature-link:hover {
+            transform: translateX(4px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .quick-actions {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s ease 0.7s both;
+        }
+
+        .quick-actions h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .action-btn:hover {
+            background: white;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer {
+            margin-top: 60px;
+            opacity: 0.9;
+            font-size: 14px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .footer p {
+            margin-bottom: 8px;
+        }
+
+        .version {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 15px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-header h1 {
+                font-size: 36px;
+            }
+
+            .hero-header p {
+                font-size: 16px;
+            }
+
+            .features-grid {
+                gap: 20px;
+            }
+
+            .feature-card {
+                padding: 30px 20px;
+            }
+
+            .quick-actions {
+                padding: 30px 20px;
+            }
+        }
+
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(238, 9, 121, 0.9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            z-index: 1000;
+        }
+
+        .logout-btn:hover {
+            background: #ee0979;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(238, 9, 121, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+
+    <div class="hero-container">
+        <!-- Hero Header -->
+        <div class="hero-header">
+            <h1>🎯 OpenBR Attendance</h1>
+            <p>Professional Biometric Management System for HRMS Integration</p>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="features-grid">
+            <!-- Face Punch -->
+            <div class="feature-card">
+                <span class="feature-icon">👤</span>
+                <div class="feature-title">Face Punch</div>
+                <div class="feature-desc">Real-time face recognition with AI-powered detection</div>
+                <a href="/face-punch" class="feature-link">Start Punch →</a>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <div class="feature-title">Dashboard</div>
+                <div class="feature-desc">View attendance stats, reports & real-time sync status</div>
+                <a href="/dashboard" class="feature-link">View Dashboard →</a>
+            </div>
+
+            <!-- Punch History -->
+            <div class="feature-card">
+                <span class="feature-icon">📜</span>
+                <div class="feature-title">Punch History</div>
+                <div class="feature-desc">Complete attendance records with filtering & search</div>
+                <button class="feature-link" onclick="goToDashboardTab('punch-history')">View History →</button>
+            </div>
+
+            <!-- Daily Report -->
+            <div class="feature-card">
+                <span class="feature-icon">📅</span>
+                <div class="feature-title">Daily Report</div>
+                <div class="feature-desc">Daily attendance report with employee breakdown</div>
+                <button class="feature-link" onclick="goToDashboardTab('daily-report')">Generate Report →</button>
+            </div>
+
+            <!-- HRMS Sync -->
+            <div class="feature-card">
+                <span class="feature-icon">🔄</span>
+                <div class="feature-title">HRMS Sync</div>
+                <div class="feature-desc">Synchronize attendance data to your HRMS system</div>
+                <button class="feature-link" onclick="goToDashboardTab('hrms-sync')">Sync Now →</button>
+            </div>
+
+            <!-- Employee Management -->
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <div class="feature-title">Employees</div>
+                <div class="feature-desc">Manage employees and view complete employee database</div>
+                <button class="feature-link" onclick="goToDashboardTab('employees')">Manage →</button>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h2>⚡ Quick Actions</h2>
+            <div class="actions-grid">
+                <button class="action-btn" onclick="window.location.href='/face-punch'">
+                    🎥 Start Camera
+                </button>
+                <button class="action-btn" onclick="goToDashboardTab('daily-report')">
+                    📈 Today's Report
+                </button>
+                <button class="action-btn" onclick="goToDashboardTab('punch-history')">
+                    🔍 View Records
+                </button>
+                <button class="action-btn" onclick="goToDashboardTab('hrms-sync')">
+                    🔗 Sync HRMS
+                </button>
+                <button class="action-btn" onclick="goToDashboardTab('employees')">
+                    👨‍💼 Employees
+                </button>
+                <button class="action-btn" onclick="logout()">
+                    🚪 Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>💼 OpenBR Biometric Attendance System</p>
+            <p>Integrated with HRMS for seamless employee management</p>
+            <div class="version">v2.1.0 • HRMS-Ready</div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        window.addEventListener('load', () => {
+            const token = localStorage.getItem('biometric_token');
+            if (!token) {
+                window.location.href = '/login';
+            }
+        });
+
+        function goToDashboardTab(tabName) {
+            // Store the tab to open and redirect to dashboard
+            sessionStorage.setItem('activeTab', tabName);
+            window.location.href = '/dashboard';
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('biometric_token');
+                localStorage.removeItem('biometric_user');
+                window.location.href = '/login';
+            }
+        }
+    </script>
+</body>
+</html>

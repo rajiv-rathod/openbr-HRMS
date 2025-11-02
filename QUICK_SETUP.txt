@@ -1,0 +1,126 @@
+# ✨ SIMPLIFIED SETUP - OpenBR + HRMS
+
+## 🎯 ONE PORT - ONE SERVER
+
+```
+OpenBR Server: http://localhost:5000
+Status: ✅ RUNNING
+Debug Mode: Terminal Output
+```
+
+---
+
+## 3-STEP INTEGRATION
+
+### Step 1: Configure HRMS
+```
+Settings → Biometric Settings
+├─ API URL:  http://localhost:5000/
+├─ Username: admin
+└─ Password: admin123
+```
+
+### Step 2: Save Settings
+Click Save. Watch terminal - you should see:
+```
+127.0.0.1 - - [01/Nov/2025 12:35:00] "POST /api/v1/api-token-auth/ HTTP/1.1" 200 -
+```
+
+### Step 3: Sync Attendance
+Click "Sync from Biometric Device" in HRMS. Watch terminal:
+```
+127.0.0.1 - - [01/Nov/2025 12:35:30] "GET /iclock/api/transactions/?start_time=X&end_time=Y HTTP/1.1" 200 -
+```
+
+---
+
+## ✅ WHAT'S READY
+
+✅ Authentication Endpoint
+✅ Transactions Endpoint  
+✅ Bearer Token Support
+✅ Token Prefix Support (HRMS)
+✅ All Attendance Data
+✅ Terminal Logging
+✅ Zero Debug Proxy Overhead
+
+---
+
+## 🔑 CREDENTIALS
+
+```
+admin / admin123
+```
+
+---
+
+## 📊 ENDPOINTS
+
+| Path | Method | Purpose |
+|------|--------|---------|
+| `/api/v1/health` | GET | Health check |
+| `/api/v1/api-token-auth/` | POST | Get token |
+| `/iclock/api/transactions/` | GET | Get attendance |
+
+---
+
+## 🚀 TEST COMMANDS
+
+```bash
+# 1. Health
+curl http://localhost:5000/api/v1/health
+
+# 2. Token
+curl -X POST http://localhost:5000/api/v1/api-token-auth/ \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}'
+
+# 3. Transactions (replace TOKEN)
+curl "http://localhost:5000/iclock/api/transactions/?start_time=1704691200&end_time=1704777600" \
+  -H "Authorization: Token TOKEN"
+```
+
+---
+
+## 📺 MONITORING
+
+Just watch the terminal where OpenBR runs.
+
+Every HRMS request shows as:
+```
+127.0.0.1 - - [TIMESTAMP] "METHOD /PATH HTTP/1.1" STATUS_CODE -
+```
+
+- `200` = Success ✅
+- `401` = Auth failed ❌
+- `500` = Server error ❌
+
+---
+
+## 📍 URLS
+
+Local: `http://localhost:5000/`
+Public: `https://weary-crypt-5jrjxprjv5xhvxvq-5000.app.github.dev/`
+
+---
+
+## 💾 DATABASE
+
+`/tmp/attendance.db` (SQLite)
+
+Quick check:
+```bash
+sqlite3 /tmp/attendance.db "SELECT COUNT(*) FROM attendance;"
+```
+
+---
+
+## 🎯 NEXT STEPS
+
+1. Configure HRMS to use port 5000
+2. Watch terminal for logs
+3. Test sync
+4. Verify records appear
+
+**That's all!** 🚀
+

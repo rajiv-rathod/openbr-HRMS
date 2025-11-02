@@ -1,0 +1,7 @@
+500
+[(307, '/api/v1/api-token-auth/')]
+application/json
+{
+  "error": "database is locked"
+}
+

@@ -1,0 +1,6 @@
+500
+application/json
+{
+  "error": "database is locked"
+}
+

@@ -1,0 +1,2863 @@
+<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
+
+<html lang="en">
+
+<head><html lang="en">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><html lang="en"><html lang="en">
+
+    <title>OpenBR - Unified Attendance System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">    <meta charset="UTF-8">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><head>
+
+    <style>
+
+        * {    <title>Attendance Dashboard - OpenBR</title>
+
+            margin: 0;
+
+            padding: 0;    <link rel="preconnect" href="https://fonts.googleapis.com">    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+            box-sizing: border-box;
+
+        }    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+
+        body {    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            font-family: 'Poppins', sans-serif;
+
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);    <style>
+
+            min-height: 100vh;
+
+            color: #333;        * {    <title>Attendance Dashboard - OpenBR</title>    <title>Biometric Attendance System</title>
+
+        }
+
+            margin: 0;
+
+        .dashboard {
+
+            display: grid;            padding: 0;    <style>    <link rel="stylesheet" href="/static/style.css">
+
+            grid-template-columns: 280px 1fr;
+
+            min-height: 100vh;            box-sizing: border-box;
+
+        }
+
+        }        * { margin: 0; padding: 0; box-sizing: border-box; }</head>
+
+        /* ===== SIDEBAR ===== */
+
+        .sidebar {
+
+            background: linear-gradient(180deg, #2d3436 0%, #000 100%);
+
+            padding: 30px 20px;        body {        <body>
+
+            position: fixed;
+
+            left: 0;            font-family: 'Poppins', sans-serif;
+
+            top: 0;
+
+            width: 280px;            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);        body {    <div class="container">
+
+            height: 100vh;
+
+            overflow-y: auto;            min-height: 100vh;
+
+            z-index: 1000;
+
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);            color: #333;            font-family: 'Inter', 'Segoe UI', sans-serif;        <nav class="navbar">
+
+        }
+
+        }
+
+        .sidebar-brand {
+
+            margin-bottom: 40px;            background: #f0f2f5;            <div class="navbar-brand">
+
+            padding-bottom: 20px;
+
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);        .container {
+
+        }
+
+            display: grid;            color: #333;                <h1>🔐 Biometric Attendance System</h1>
+
+        .sidebar-brand h2 {
+
+            color: #667eea;            grid-template-columns: 280px 1fr;
+
+            font-size: 22px;
+
+            font-weight: 700;            min-height: 100vh;        }                <p class="version">ZKTeco Clone v1.0</p>
+
+            margin-bottom: 5px;
+
+        }        }
+
+
+
+        .sidebar-brand p {            </div>
+
+            color: rgba(255, 255, 255, 0.6);
+
+            font-size: 12px;        /* Sidebar Styling */
+
+        }
+
+        .sidebar {        .sidebar {            <div class="navbar-menu">
+
+        .menu {
+
+            list-style: none;            background: linear-gradient(180deg, #2d3436 0%, #000 100%);
+
+        }
+
+            padding: 30px 20px;            position: fixed;                <button class="nav-btn active" onclick="showSection('dashboard')">Dashboard</button>
+
+        .menu li {
+
+            margin-bottom: 8px;            position: fixed;
+
+        }
+
+            left: 0;            left: 0;                <button class="nav-btn" onclick="showSection('employees')">Employees</button>
+
+        .menu a {
+
+            display: block;            top: 0;
+
+            padding: 14px 16px;
+
+            color: rgba(255, 255, 255, 0.7);            width: 280px;            top: 0;                <button class="nav-btn" onclick="showSection('attendance')">Attendance</button>
+
+            text-decoration: none;
+
+            border-radius: 10px;            height: 100vh;
+
+            transition: all 0.3s ease;
+
+            font-size: 14px;            overflow-y: auto;            width: 250px;                <button class="nav-btn" onclick="showSection('hrms')">HRMS Integration</button>
+
+            font-weight: 500;
+
+            cursor: pointer;            z-index: 1000;
+
+        }
+
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);            height: 100vh;                <button class="nav-btn" onclick="showSection('test')">Face Punch Test</button>
+
+        .menu a:hover {
+
+            background: rgba(102, 126, 234, 0.1);        }
+
+            color: white;
+
+            transform: translateX(5px);            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);            </div>
+
+        }
+
+        .sidebar-brand {
+
+        .menu a.active {
+
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);            margin-bottom: 40px;            color: white;        </nav>
+
+            color: white;
+
+            border-left: 4px solid #667eea;            padding-bottom: 20px;
+
+            padding-left: 12px;
+
+        }            border-bottom: 2px solid rgba(102, 126, 234, 0.3);            padding: 20px;
+
+
+
+        /* ===== MAIN CONTENT ===== */        }
+
+        .content {
+
+            margin-left: 280px;            overflow-y: auto;        <!-- Dashboard Section -->
+
+            padding: 30px;
+
+            background: #f8f9ff;        .sidebar-brand h2 {
+
+        }
+
+            color: #667eea;            z-index: 1000;        <section id="dashboard" class="section active">
+
+        .top-bar {
+
+            display: flex;            font-size: 20px;
+
+            justify-content: space-between;
+
+            align-items: center;            margin-bottom: 5px;        }            <div class="section-header">
+
+            margin-bottom: 30px;
+
+            background: white;            font-weight: 700;
+
+            padding: 20px 30px;
+
+            border-radius: 20px;        }                <h2>Dashboard</h2>
+
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+        }
+
+
+
+        .top-bar h1 {        .sidebar-brand p {        .sidebar h2 {            </div>
+
+            font-size: 28px;
+
+            font-weight: 700;            color: rgba(255, 255, 255, 0.6);
+
+            color: #2d3436;
+
+        }            font-size: 12px;            font-size: 20px;            <div class="stats-grid">
+
+
+
+        .logout-btn {        }
+
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+
+            color: white;            margin-bottom: 30px;                <div class="stat-card">
+
+            border: none;
+
+            padding: 12px 28px;        .nav-menu {
+
+            border-radius: 10px;
+
+            cursor: pointer;            list-style: none;            display: flex;                    <div class="stat-icon">👥</div>
+
+            font-weight: 600;
+
+            font-size: 14px;        }
+
+            transition: all 0.3s ease;
+
+            font-family: 'Poppins', sans-serif;            align-items: center;                    <div class="stat-content">
+
+        }
+
+        .nav-menu li {
+
+        .logout-btn:hover {
+
+            transform: translateY(-3px);            margin-bottom: 5px;            gap: 10px;                        <p class="stat-label">Total Employees</p>
+
+            box-shadow: 0 12px 30px rgba(238, 9, 121, 0.3);
+
+        }        }
+
+
+
+        /* ===== TABS ===== */        }                        <p class="stat-value" id="stat-employees">0</p>
+
+        .tab-nav {
+
+            display: flex;        .nav-menu a {
+
+            gap: 10px;
+
+            margin-bottom: 30px;            display: block;                    </div>
+
+            background: white;
+
+            padding: 15px;            padding: 14px 16px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);            color: rgba(255, 255, 255, 0.7);        .nav-menu {                </div>
+
+            overflow-x: auto;
+
+        }            text-decoration: none;
+
+
+
+        .tab-btn {            border-radius: 10px;            list-style: none;                <div class="stat-card">
+
+            padding: 12px 24px;
+
+            background: transparent;            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            border: 2px solid transparent;
+
+            border-radius: 10px;            font-size: 14px;        }                    <div class="stat-icon">✓</div>
+
+            cursor: pointer;
+
+            font-weight: 600;            font-weight: 500;
+
+            font-size: 14px;
+
+            color: #999;            position: relative;                    <div class="stat-content">
+
+            transition: all 0.3s ease;
+
+            font-family: 'Poppins', sans-serif;            overflow: hidden;
+
+            white-space: nowrap;
+
+        }        }        .nav-menu li {                        <p class="stat-label">Today's Punches</p>
+
+
+
+        .tab-btn:hover {
+
+            color: #667eea;
+
+            border-color: rgba(102, 126, 234, 0.3);        .nav-menu a::before {            margin-bottom: 10px;                        <p class="stat-value" id="stat-today">0</p>
+
+        }
+
+            content: '';
+
+        .tab-btn.active {
+
+            color: white;            position: absolute;        }                    </div>
+
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            border-color: transparent;            left: 0;
+
+        }
+
+            top: 0;                </div>
+
+        .tab-content {
+
+            display: none;            width: 4px;
+
+            animation: fadeInUp 0.4s ease;
+
+        }            height: 100%;        .nav-menu a {                <div class="stat-card">
+
+
+
+        .tab-content.active {            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            display: block;
+
+        }            transform: scaleY(0);            display: block;                    <div class="stat-icon">📊</div>
+
+
+
+        @keyframes fadeInUp {            transition: transform 0.3s ease;
+
+            from { opacity: 0; transform: translateY(20px); }
+
+            to { opacity: 1; transform: translateY(0); }        }            padding: 12px 15px;                    <div class="stat-content">
+
+        }
+
+
+
+        /* ===== STATS GRID ===== */
+
+        .stats-grid {        .nav-menu a:hover {            color: rgba(255, 255, 255, 0.8);                        <p class="stat-label">Total Records</p>
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));            background: rgba(102, 126, 234, 0.1);
+
+            gap: 20px;
+
+            margin-bottom: 30px;            color: white;            text-decoration: none;                        <p class="stat-value" id="stat-records">0</p>
+
+        }
+
+            transform: translateX(5px);
+
+        .stat-card {
+
+            background: white;        }            border-radius: 8px;                    </div>
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+            transition: all 0.3s ease;        .nav-menu a:hover::before {            transition: all 0.3s ease;                </div>
+
+            border-top: 4px solid transparent;
+
+            background: linear-gradient(to bottom, white, white), linear-gradient(90deg, #667eea 0%, #764ba2 100%);            transform: scaleY(1);
+
+            background-clip: padding-box, border-box;
+
+            background-origin: padding-box, border-box;        }            cursor: pointer;                <div class="stat-card">
+
+            border: 1px solid transparent;
+
+        }
+
+
+
+        .stat-card:hover {        .nav-menu a.active {        }                    <div class="stat-icon">⚡</div>
+
+            transform: translateY(-8px);
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+
+        }
+
+            color: white;                    <div class="stat-content">
+
+        .stat-icon {
+
+            font-size: 32px;        }
+
+            margin-bottom: 12px;
+
+        }        .nav-menu a:hover,                        <p class="stat-label">System Status</p>
+
+
+
+        .stat-label {        .nav-menu a.active::before {
+
+            color: #999;
+
+            font-size: 13px;            transform: scaleY(1);        .nav-menu a.active {                        <p class="stat-value" id="stat-status">Running</p>
+
+            font-weight: 500;
+
+            text-transform: uppercase;        }
+
+            letter-spacing: 0.5px;
+
+        }            background: rgba(255, 255, 255, 0.2);                    </div>
+
+
+
+        .stat-value {        /* Main Content Area */
+
+            font-size: 36px;
+
+            font-weight: 700;        .main-content {            color: white;                </div>
+
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            -webkit-background-clip: text;            margin-left: 280px;
+
+            -webkit-text-fill-color: transparent;
+
+            background-clip: text;            padding: 30px;        }            </div>
+
+        }
+
+            background: #f8f9ff;
+
+        /* ===== CARDS ===== */
+
+        .card {        }
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);        .top-bar {        .main-content {            <div class="dashboard-grid">
+
+            margin-bottom: 20px;
+
+            transition: all 0.3s ease;            display: flex;
+
+        }
+
+            justify-content: space-between;            margin-left: 250px;                <div class="card">
+
+        .card h3 {
+
+            font-size: 18px;            align-items: center;
+
+            font-weight: 700;
+
+            color: #2d3436;            margin-bottom: 30px;            padding: 20px;                    <h3>Today's Attendance</h3>
+
+            margin-bottom: 20px;
+
+            padding-bottom: 15px;            background: white;
+
+            border-bottom: 2px solid #f0f0f0;
+
+        }            padding: 20px 30px;            min-height: 100vh;                    <div id="today-attendance" class="attendance-list">
+
+
+
+        /* ===== FORMS & INPUTS ===== */            border-radius: 20px;
+
+        .form-row {
+
+            display: grid;            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);        }                        <p class="loading">Loading...</p>
+
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 15px;        }
+
+            margin-bottom: 20px;
+
+        }                    </div>
+
+
+
+        .form-group {        .top-bar h1 {
+
+            margin-bottom: 20px;
+
+        }            font-size: 28px;        .top-bar {                </div>
+
+
+
+        .form-group label {            font-weight: 700;
+
+            display: block;
+
+            font-size: 13px;            color: #2d3436;            display: flex;                <div class="card">
+
+            font-weight: 600;
+
+            color: #333;        }
+
+            margin-bottom: 8px;
+
+            text-transform: uppercase;            justify-content: space-between;                    <h3>System Information</h3>
+
+            letter-spacing: 0.5px;
+
+        }        .logout-btn {
+
+
+
+        .form-group input,            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);            align-items: center;                    <div id="system-info" class="info-box">
+
+        .form-group select {
+
+            width: 100%;            color: white;
+
+            padding: 12px;
+
+            border: 2px solid #f0f0f0;            border: none;            margin-bottom: 30px;                        <p class="loading">Loading...</p>
+
+            border-radius: 10px;
+
+            font-family: 'Poppins', sans-serif;            padding: 12px 28px;
+
+            font-size: 14px;
+
+            transition: all 0.3s ease;            border-radius: 10px;            background: white;                    </div>
+
+        }
+
+            cursor: pointer;
+
+        .form-group input:focus,
+
+        .form-group select:focus {            font-weight: 600;            padding: 20px;                </div>
+
+            outline: none;
+
+            border-color: #667eea;            font-size: 14px;
+
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+
+        }            transition: all 0.3s ease;            border-radius: 12px;            </div>
+
+
+
+        /* ===== BUTTONS ===== */            font-family: 'Poppins', sans-serif;
+
+        .btn {
+
+            padding: 12px 24px;        }            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);        </section>
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-weight: 600;        .logout-btn:hover {        }
+
+            font-size: 14px;
+
+            transition: all 0.3s ease;            transform: translateY(-3px);
+
+            font-family: 'Poppins', sans-serif;
+
+        }            box-shadow: 0 12px 30px rgba(238, 9, 121, 0.3);        <!-- Employees Section -->
+
+
+
+        .btn-primary {        }
+
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            color: white;        .top-bar h1 {        <section id="employees" class="section">
+
+        }
+
+        /* Stats Grid */
+
+        .btn-primary:hover {
+
+            transform: translateY(-2px);        .stats-grid {            font-size: 24px;            <div class="section-header">
+
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+
+        }            display: grid;
+
+
+
+        .btn-secondary {            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));            color: #333;                <h2>Employee Management</h2>
+
+            background: #f0f0f0;
+
+            color: #333;            gap: 20px;
+
+        }
+
+            margin-bottom: 30px;        }                <button class="btn btn-primary" onclick="showEmployeeForm()">+ Add Employee</button>
+
+        .btn-secondary:hover {
+
+            background: #e0e0e0;        }
+
+        }
+
+            </div>
+
+        .btn-success {
+
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);        .stat-card {
+
+            color: white;
+
+        }            background: white;        .btn-logout {
+
+
+
+        .btn-success:hover {            padding: 25px;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 10px 30px rgba(17, 153, 142, 0.3);            border-radius: 15px;            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);            <div id="employee-form-container" class="form-container" style="display:none;">
+
+        }
+
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+        /* ===== TABLES ===== */
+
+        .table-responsive {            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);            color: white;                <div class="card">
+
+            overflow-x: auto;
+
+            border-radius: 10px;            position: relative;
+
+        }
+
+            overflow: hidden;            border: none;                    <h3>Register New Employee</h3>
+
+        table {
+
+            width: 100%;        }
+
+            border-collapse: collapse;
+
+            font-size: 14px;            padding: 10px 20px;                    <form id="employee-form" onsubmit="addEmployee(event)">
+
+        }
+
+        .stat-card::before {
+
+        table thead {
+
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);            content: '';            border-radius: 6px;                        <div class="form-group">
+
+            color: white;
+
+        }            position: absolute;
+
+
+
+        table th {            top: 0;            cursor: pointer;                            <label>Employee ID</label>
+
+            padding: 15px;
+
+            text-align: left;            left: 0;
+
+            font-weight: 600;
+
+            text-transform: uppercase;            right: 0;            font-weight: 600;                            <input type="text" id="emp-id" required placeholder="e.g., EMP001">
+
+            font-size: 12px;
+
+            letter-spacing: 0.5px;            height: 4px;
+
+        }
+
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);            transition: all 0.3s ease;                        </div>
+
+        table td {
+
+            padding: 15px;        }
+
+            border-bottom: 1px solid #f0f0f0;
+
+            color: #555;        }                        <div class="form-group">
+
+        }
+
+        .stat-card:hover {
+
+        table tbody tr:hover {
+
+            background: #f9f9ff;            transform: translateY(-8px);                            <label>Full Name</label>
+
+        }
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+        table tbody tr:last-child td {
+
+            border-bottom: none;        }        .btn-logout:hover {                            <input type="text" id="emp-name" required placeholder="e.g., John Doe">
+
+        }
+
+
+
+        /* ===== BADGES ===== */
+
+        .badge {        .stat-icon {            transform: translateY(-2px);                        </div>
+
+            display: inline-block;
+
+            padding: 6px 14px;            font-size: 32px;
+
+            border-radius: 20px;
+
+            font-size: 12px;            margin-bottom: 12px;            box-shadow: 0 5px 15px rgba(238, 9, 121, 0.3);                        <div class="form-group">
+
+            font-weight: 600;
+
+        }        }
+
+
+
+        .badge-success {        }                            <label>Department</label>
+
+            background: #d1e7dd;
+
+            color: #0f5132;        .stat-label {
+
+        }
+
+            color: #999;                            <input type="text" id="emp-dept" placeholder="e.g., IT">
+
+        .badge-warning {
+
+            background: #fff3cd;            font-size: 13px;
+
+            color: #664d03;
+
+        }            font-weight: 500;        .cards-grid {                        </div>
+
+
+
+        .badge-info {            margin-bottom: 8px;
+
+            background: #cfe2ff;
+
+            color: #084298;            text-transform: uppercase;            display: grid;                        <div class="form-group">
+
+        }
+
+            letter-spacing: 0.5px;
+
+        /* ===== ALERTS ===== */
+
+        .alert {        }            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));                            <label>Photo</label>
+
+            padding: 15px 20px;
+
+            border-radius: 10px;
+
+            margin-bottom: 15px;
+
+            animation: slideDown 0.3s ease;        .stat-value {            gap: 20px;                            <input type="file" id="emp-photo" accept="image/*">
+
+        }
+
+            font-size: 36px;
+
+        @keyframes slideDown {
+
+            from { opacity: 0; transform: translateY(-20px); }            font-weight: 700;            margin-bottom: 30px;                            <small>Upload a clear face photo for better recognition</small>
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+
+
+        .alert-success {            -webkit-background-clip: text;        }                        </div>
+
+            background: #d1e7dd;
+
+            color: #0f5132;            -webkit-text-fill-color: transparent;
+
+        }
+
+            background-clip: text;                        <div class="form-actions">
+
+        .alert-error {
+
+            background: #f8d7da;        }
+
+            color: #842029;
+
+        }        .card {                            <button type="submit" class="btn btn-success">Register</button>
+
+
+
+        .alert-info {        /* Tab Navigation */
+
+            background: #cfe2ff;
+
+            color: #084298;        .tab-navigation {            background: white;                            <button type="button" class="btn btn-secondary" onclick="hideEmployeeForm()">Cancel</button>
+
+        }
+
+            display: flex;
+
+        .loading {
+
+            text-align: center;            gap: 10px;            border-radius: 12px;                        </div>
+
+            padding: 40px;
+
+            color: #999;            margin-bottom: 30px;
+
+        }
+
+            background: white;            padding: 20px;                    </form>
+
+        .spinner {
+
+            display: inline-block;            padding: 15px;
+
+            width: 30px;
+
+            height: 30px;            border-radius: 15px;            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);                </div>
+
+            border: 4px solid #f0f0f0;
+
+            border-top-color: #667eea;            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+            border-radius: 50%;
+
+            animation: spin 1s linear infinite;        }        }            </div>
+
+        }
+
+
+
+        @keyframes spin {
+
+            to { transform: rotate(360deg); }        .tab-btn {
+
+        }
+
+            padding: 12px 24px;
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 1024px) {            background: transparent;        .card-header {            <div class="card">
+
+            .dashboard { grid-template-columns: 1fr; }
+
+            .sidebar { width: 250px; }            border: 2px solid transparent;
+
+            .content { margin-left: 250px; }
+
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }            border-radius: 10px;            font-size: 14px;                <h3>Registered Employees</h3>
+
+        }
+
+            cursor: pointer;
+
+        @media (max-width: 768px) {
+
+            .dashboard { grid-template-columns: 1fr; }            font-weight: 600;            color: #666;                <div id="employees-list" class="table-responsive">
+
+            .sidebar { position: fixed; left: -280px; transition: left 0.3s ease; }
+
+            .content { margin-left: 0; padding: 15px; }            font-size: 14px;
+
+            .stats-grid { grid-template-columns: 1fr; }
+
+            .top-bar { flex-direction: column; gap: 15px; }            color: #999;            font-weight: 600;                    <p class="loading">Loading...</p>
+
+            .form-row { grid-template-columns: 1fr; }
+
+            .tab-nav { flex-wrap: wrap; }            transition: all 0.3s ease;
+
+        }
+
+    </style>            font-family: 'Poppins', sans-serif;            margin-bottom: 10px;                </div>
+
+</head>
+
+<body>        }
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->        }            </div>
+
+        <div class="sidebar">
+
+            <div class="sidebar-brand">        .tab-btn:hover {
+
+                <h2>📊 OpenBR</h2>
+
+                <p>Attendance Hub</p>            color: #667eea;        </section>
+
+            </div>
+
+            <ul class="menu">            border-color: rgba(102, 126, 234, 0.3);
+
+                <li><a onclick="switchTab('overview')" class="menu-link active">📈 Overview</a></li>
+
+                <li><a onclick="switchTab('punches')" class="menu-link">📜 Punches</a></li>        }        .card-value {
+
+                <li><a onclick="switchTab('reports')" class="menu-link">📊 Reports</a></li>
+
+                <li><a onclick="switchTab('employees')" class="menu-link">👥 Employees</a></li>
+
+                <li><a onclick="switchTab('sync')" class="menu-link">🔄 HRMS Sync</a></li>
+
+                <li><a onclick="switchTab('face-punch')" class="menu-link">👤 Face Punch</a></li>        .tab-btn.active {            font-size: 32px;        <!-- Attendance Section -->
+
+            </ul>
+
+        </div>            color: white;
+
+
+
+        <!-- MAIN CONTENT -->            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);            font-weight: 700;        <section id="attendance" class="section">
+
+        <div class="content">
+
+            <div class="top-bar">            border-color: transparent;
+
+                <h1 id="page-title">📈 Dashboard Overview</h1>
+
+                <button class="logout-btn" onclick="logout()">🚪 Logout</button>        }            color: #667eea;            <div class="section-header">
+
+            </div>
+
+
+
+            <div id="alert-container"></div>
+
+        /* Content Sections */        }                <h2>Attendance Records</h2>
+
+            <!-- TAB NAVIGATION -->
+
+            <div class="tab-nav">        .section {
+
+                <button class="tab-btn active" onclick="switchTab('overview')">📈 Overview</button>
+
+                <button class="tab-btn" onclick="switchTab('punches')">📜 Punches</button>            display: none;            </div>
+
+                <button class="tab-btn" onclick="switchTab('reports')">📊 Reports</button>
+
+                <button class="tab-btn" onclick="switchTab('employees')">👥 Employees</button>            animation: fadeInUp 0.4s ease;
+
+                <button class="tab-btn" onclick="switchTab('sync')">🔄 Sync</button>
+
+                <button class="tab-btn" onclick="switchTab('face-punch')">👤 Face Punch</button>        }        .section {
+
+            </div>
+
+
+
+            <!-- ===== OVERVIEW TAB ===== -->
+
+            <div id="overview" class="tab-content active">        .section.active {            background: white;            <div class="card">
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">            display: block;
+
+                        <div class="stat-icon">👥</div>
+
+                        <div class="stat-label">Total Employees</div>        }            border-radius: 12px;                <h3>Filter & Export</h3>
+
+                        <div class="stat-value" id="stat-employees">0</div>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">✓</div>        @keyframes fadeInUp {            padding: 20px;                <div class="filter-row">
+
+                        <div class="stat-label">Today's Punches</div>
+
+                        <div class="stat-value" id="stat-today">0</div>            from {
+
+                    </div>
+
+                    <div class="stat-card">                opacity: 0;            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);                    <input type="date" id="filter-start" placeholder="Start Date">
+
+                        <div class="stat-icon">📊</div>
+
+                        <div class="stat-label">Total Records</div>                transform: translateY(20px);
+
+                        <div class="stat-value" id="stat-total">0</div>
+
+                    </div>            }            margin-bottom: 30px;                    <input type="date" id="filter-end" placeholder="End Date">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">⚡</div>            to {
+
+                        <div class="stat-label">System Status</div>
+
+                        <div class="stat-value" id="stat-status">Running</div>                opacity: 1;        }                    <input type="text" id="filter-emp-id" placeholder="Employee ID">
+
+                    </div>
+
+                </div>                transform: translateY(0);
+
+
+
+                <div class="card">            }                    <button class="btn btn-primary" onclick="filterAttendance()">Filter</button>
+
+                    <h3>📌 Recent Punches (Today)</h3>
+
+                    <div id="recent-punches-container" class="table-responsive">        }
+
+                        <div class="loading"><div class="spinner"></div></div>
+
+                    </div>        .section-header {                    <button class="btn btn-secondary" onclick="exportAttendanceCSV()">📥 Export CSV</button>
+
+                </div>
+
+            </div>        .section-header {
+
+
+
+            <!-- ===== PUNCHES TAB ===== -->            font-size: 20px;            font-size: 18px;                </div>
+
+            <div id="punches" class="tab-content">
+
+                <div class="card">            font-weight: 700;
+
+                    <h3>🔍 Search Punches</h3>
+
+                    <div class="form-row">            color: white;            font-weight: 700;            </div>
+
+                        <div class="form-group">
+
+                            <label>Start Date</label>            margin-bottom: 20px;
+
+                            <input type="date" id="punch-start-date">
+
+                        </div>            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);            color: #333;
+
+                        <div class="form-group">
+
+                            <label>End Date</label>        }
+
+                            <input type="date" id="punch-end-date">
+
+                        </div>            margin-bottom: 20px;            <div class="card">
+
+                        <div class="form-group">
+
+                            <label>Employee ID</label>        /* Cards */
+
+                            <input type="text" id="punch-emp-filter" placeholder="Optional">
+
+                        </div>        .card {        }                <h3>Attendance Records</h3>
+
+                        <div class="form-group">
+
+                            <label>&nbsp;</label>            background: white;
+
+                            <button class="btn btn-primary" onclick="loadPunches()">🔍 Search</button>
+
+                        </div>            padding: 25px;                <div id="attendance-list" class="table-responsive">
+
+                    </div>
+
+                </div>            border-radius: 15px;
+
+
+
+                <div class="card">            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);        table {                    <p class="loading">Loading...</p>
+
+                    <h3>📜 All Punch Records</h3>
+
+                    <div id="punches-container" class="table-responsive">            margin-bottom: 20px;
+
+                        <div class="loading"><div class="spinner"></div></div>
+
+                    </div>            transition: all 0.3s ease;            width: 100%;                </div>
+
+                </div>
+
+            </div>        }
+
+
+
+            <!-- ===== REPORTS TAB ===== -->            border-collapse: collapse;            </div>
+
+            <div id="reports" class="tab-content">
+
+                <div class="card">        .card:hover {
+
+                    <h3>📅 Generate Reports</h3>
+
+                    <div class="form-row">            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);        }
+
+                        <div class="form-group">
+
+                            <label>Report Type</label>        }
+
+                            <select id="report-type" onchange="updateReportFields()">
+
+                                <option value="daily">Daily Report</option>            <div class="card">
+
+                                <option value="monthly">Monthly Report</option>
+
+                            </select>        .card h3 {
+
+                        </div>
+
+                        <div class="form-group">            font-size: 18px;        table th {                <h3>Attendance Summary</h3>
+
+                            <label>Date</label>
+
+                            <input type="date" id="report-date">            font-weight: 700;
+
+                        </div>
+
+                        <div class="form-group">            color: #2d3436;            background: #f8f9fa;                <div class="filter-row">
+
+                            <label>&nbsp;</label>
+
+                            <button class="btn btn-primary" onclick="generateReport()">📊 Generate</button>            margin-bottom: 20px;
+
+                        </div>
+
+                    </div>            padding-bottom: 15px;            padding: 12px;                    <input type="date" id="summary-start" placeholder="Start Date">
+
+                </div>
+
+            border-bottom: 2px solid #f0f0f0;
+
+                <div class="card">
+
+                    <h3>📊 Report Results</h3>        }            text-align: left;                    <input type="date" id="summary-end" placeholder="End Date">
+
+                    <div id="reports-container" class="table-responsive">
+
+                        <div class="loading"><div class="spinner"></div></div>
+
+                    </div>
+
+                </div>        /* Table Styling */            font-weight: 600;                    <button class="btn btn-primary" onclick="generateSummary()">Generate Summary</button>
+
+            </div>
+
+        .table-responsive {
+
+            <!-- ===== EMPLOYEES TAB ===== -->
+
+            <div id="employees" class="tab-content">            overflow-x: auto;            color: #666;                </div>
+
+                <div class="card">
+
+                    <h3>👥 Employee Directory</h3>            border-radius: 10px;
+
+                    <div style="margin-bottom: 20px;">
+
+                        <button class="btn btn-success" onclick="syncEmployeesFromHRMS()">🔄 Sync from HRMS</button>        }            border-bottom: 2px solid #e0e0e0;                <div id="summary-results" class="table-responsive"></div>
+
+                        <button class="btn btn-primary" style="margin-left: 10px;" onclick="loadEmployees()">🔍 Refresh</button>
+
+                    </div>
+
+                    <div id="employees-container" class="table-responsive">
+
+                        <div class="loading"><div class="spinner"></div></div>        table {            font-size: 13px;            </div>
+
+                    </div>
+
+                </div>            width: 100%;
+
+            </div>
+
+            border-collapse: collapse;        }        </section>
+
+            <!-- ===== SYNC TAB ===== -->
+
+            <div id="sync" class="tab-content">            font-size: 14px;
+
+                <div class="card">
+
+                    <h3>🔄 HRMS Synchronization</h3>        }
+
+                    <div style="margin-bottom: 20px;">
+
+                        <button class="btn btn-success" onclick="syncPunchesToHRMS()">📤 Sync Punches to HRMS</button>
+
+                        <button class="btn btn-primary" style="margin-left: 10px;" onclick="checkSyncStatus()">✓ Check Status</button>
+
+                    </div>        table thead {        table td {        <!-- HRMS Integration Section -->
+
+                </div>
+
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+                <div class="card">
+
+                    <h3>📊 Sync Status</h3>            color: white;            padding: 12px;        <section id="hrms" class="section">
+
+                    <div id="sync-status-container">
+
+                        <p style="color: #999; text-align: center; padding: 20px;">Click "Check Status" to view sync information</p>        }
+
+                    </div>
+
+                </div>            border-bottom: 1px solid #f0f0f0;            <div class="section-header">
+
+
+
+                <div id="sync-result-container"></div>        table th {
+
+            </div>
+
+            padding: 15px;            font-size: 13px;                <h2>HRMS Integration</h2>
+
+            <!-- ===== FACE PUNCH TAB ===== -->
+
+            <div id="face-punch" class="tab-content">            text-align: left;
+
+                <div class="card">
+
+                    <h3>👤 Quick Face Punch</h3>            font-weight: 600;        }            </div>
+
+                    <p style="color: #999; margin-bottom: 20px;">For full face punch interface with camera, click below:</p>
+
+                    <a href="/face-punch" class="btn btn-primary">📷 Go to Face Punch Module →</a>            text-transform: uppercase;
+
+                </div>
+
+            </div>            font-size: 12px;
+
+        </div>
+
+    </div>            letter-spacing: 0.5px;
+
+
+
+    <script>        }        .badge {            <div class="card">
+
+        const apiUrl = 'https://weary-crypt-5jrjxprjv5xhvxvq-5000.app.github.dev/api/v1';
+
+        let token = null;
+
+
+
+        window.addEventListener('load', async () => {        table td {            display: inline-block;                <h3>HRMS Connection Settings</h3>
+
+            token = localStorage.getItem('biometric_token');
+
+            if (!token) {            padding: 15px;
+
+                window.location.href = '/login';
+
+                return;            border-bottom: 1px solid #f0f0f0;            padding: 4px 12px;                <form id="hrms-form" onsubmit="testHRMSConnection(event)">
+
+            }
+
+            color: #555;
+
+            const today = new Date().toISOString().split('T')[0];
+
+            document.getElementById('punch-start-date').value = today;        }            border-radius: 20px;                    <div class="form-group">
+
+            document.getElementById('punch-end-date').value = today;
+
+            document.getElementById('report-date').value = today;
+
+
+
+            await loadOverview();        table tbody tr:hover {            font-size: 11px;                        <label>ZKTeco API URL</label>
+
+        });
+
+            background: #f9f9ff;
+
+        async function loadOverview() {
+
+            try {        }            font-weight: 600;                        <input type="url" id="hrms-url" required placeholder="http://110.78.645.123:8080">
+
+                const today = new Date().toISOString().split('T')[0];
+
+                
+
+                const [punches, employees] = await Promise.all([
+
+                    fetch(`${apiUrl}/punch-history?start_date=${today}&end_date=${today}&limit=100`,         table tbody tr:last-child td {        }                        <small>Example: http://110.78.645.123:8080</small>
+
+                        { headers: { 'Authorization': `Bearer ${token}` } }).then(r => r.json()),
+
+                    fetch(`${apiUrl}/employees`,            border-bottom: none;
+
+                        { headers: { 'Authorization': `Bearer ${token}` } }).then(r => r.json())
+
+                ]);        }                    </div>
+
+
+
+                document.getElementById('stat-employees').textContent = employees.length || 0;
+
+                document.getElementById('stat-today').textContent = punches.count || 0;
+
+                document.getElementById('stat-total').textContent = punches.count || 0;        /* Badges */        .badge-success { background: #d1e7dd; color: #0f5132; }                    <div class="form-group">
+
+
+
+                let html = '';        .badge {
+
+                if (!punches.data || punches.data.length === 0) {
+
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No punches today</p>';            display: inline-block;        .badge-warning { background: #fff3cd; color: #664d03; }                        <label>Username</label>
+
+                } else {
+
+                    html = `<table>            padding: 6px 14px;
+
+                        <thead><tr><th>Time</th><th>Employee</th><th>Type</th><th>Confidence</th><th>Status</th></tr></thead>
+
+                        <tbody>`;            border-radius: 20px;        .badge-info { background: #cfe2ff; color: #084298; }                        <input type="text" id="hrms-username" placeholder="Optional">
+
+                    punches.data.forEach(p => {
+
+                        const time = new Date(p.timestamp).toLocaleTimeString();            font-size: 12px;
+
+                        const status = p.synced ? '<span class="badge badge-success">Synced</span>' : '<span class="badge badge-warning">Pending</span>';
+
+                        html += `<tr><td>${time}</td><td>${p.emp_id}</td><td><span class="badge badge-info">${p.punch_type}</span></td><td>${(p.confidence*100).toFixed(0)}%</td><td>${status}</td></tr>`;            font-weight: 600;                    </div>
+
+                    });
+
+                    html += '</tbody></table>';            letter-spacing: 0.3px;
+
+                }
+
+                document.getElementById('recent-punches-container').innerHTML = html;        }        .btn-sync {                    <div class="form-group">
+
+            } catch (error) {
+
+                showAlert('error', 'Failed to load overview: ' + error.message);
+
+            }
+
+        }        .badge-success {            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);                        <label>Password</label>
+
+
+
+        async function loadPunches() {            background: #d1e7dd;
+
+            const start = document.getElementById('punch-start-date').value;
+
+            const end = document.getElementById('punch-end-date').value;            color: #0f5132;            color: white;                        <input type="password" id="hrms-password" placeholder="Optional">
+
+            const empId = document.getElementById('punch-emp-filter').value;
+
+        }
+
+            try {
+
+                let url = `${apiUrl}/punch-history?start_date=${start}&end_date=${end}&limit=500`;            border: none;                    </div>
+
+                if (empId) url += `&emp_id=${empId}`;
+
+        .badge-warning {
+
+                const res = await fetch(url, { headers: { 'Authorization': `Bearer ${token}` } });
+
+                const data = await res.json();            background: #fff3cd;            padding: 12px 24px;                    <button type="submit" class="btn btn-primary">🔗 Test Connection</button>
+
+
+
+                let html = '';            color: #664d03;
+
+                if (!data.data || data.data.length === 0) {
+
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No records found</p>';        }            border-radius: 6px;                </form>
+
+                } else {
+
+                    html = `<table>
+
+                        <thead><tr><th>DateTime</th><th>Employee</th><th>Type</th><th>Confidence</th><th>Status</th></tr></thead>
+
+                        <tbody>`;        .badge-info {            cursor: pointer;                <div id="hrms-test-result" class="result-box" style="display:none;"></div>
+
+                    data.data.forEach(p => {
+
+                        const dt = new Date(p.timestamp).toLocaleString();            background: #cfe2ff;
+
+                        const status = p.synced ? '<span class="badge badge-success">Synced</span>' : '<span class="badge badge-warning">Pending</span>';
+
+                        html += `<tr><td>${dt}</td><td>${p.emp_id}</td><td><span class="badge badge-info">${p.punch_type}</span></td><td>${(p.confidence*100).toFixed(0)}%</td><td>${status}</td></tr>`;            color: #084298;            font-weight: 600;            </div>
+
+                    });
+
+                    html += '</tbody></table>';        }
+
+                }
+
+                document.getElementById('punches-container').innerHTML = html;            transition: all 0.3s ease;
+
+            } catch (error) {
+
+                showAlert('error', 'Failed to load punches: ' + error.message);        /* Buttons */
+
+            }
+
+        }        .btn {        }            <div class="card">
+
+
+
+        function updateReportFields() {            padding: 12px 24px;
+
+            const type = document.getElementById('report-type').value;
+
+            const dateInput = document.getElementById('report-date');            border: none;                <h3>Generate Auth Token</h3>
+
+            if (type === 'monthly') {
+
+                dateInput.type = 'month';            border-radius: 10px;
+
+            } else {
+
+                dateInput.type = 'date';            cursor: pointer;        .btn-sync:hover {                <div class="form-group">
+
+            }
+
+        }            font-weight: 600;
+
+
+
+        async function generateReport() {            font-size: 14px;            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.3);                    <label>Token Information</label>
+
+            const type = document.getElementById('report-type').value;
+
+            const date = document.getElementById('report-date').value;            transition: all 0.3s ease;
+
+
+
+            if (!date) {            font-family: 'Poppins', sans-serif;        }                    <p class="info-text">Generate a secure token to authenticate HRMS API requests</p>
+
+                showAlert('error', 'Select a date');
+
+                return;        }
+
+            }
+
+                </div>
+
+            try {
+
+                let url;        .btn-primary {
+
+                if (type === 'daily') {
+
+                    url = `/reports/daily?date=${date}`;            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);        .alert {                <button class="btn btn-success" onclick="generateAuthToken()">Generate Token</button>
+
+                } else {
+
+                    url = `/reports/monthly?month=${date}`;            color: white;
+
+                }
+
+        }            padding: 12px 15px;                <div id="token-result" class="result-box" style="display:none;">
+
+                const res = await fetch(url, { headers: { 'Authorization': `Bearer ${token}` } });
+
+                const data = await res.json();
+
+
+
+                let html = '';        .btn-primary:hover {            border-radius: 6px;                    <textarea id="token-display" readonly class="token-textarea"></textarea>
+
+                if (!data.data || data.data.length === 0) {
+
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No data for this period</p>';            transform: translateY(-2px);
+
+                } else {
+
+                    html = `<table>            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);            margin-bottom: 15px;                    <button class="btn btn-secondary" onclick="copyToken()">📋 Copy Token</button>
+
+                        <thead><tr><th>Employee ID</th><th>Name</th><th>Dept</th><th>Punches</th><th>First In</th><th>Last Out</th></tr></thead>
+
+                        <tbody>`;        }
+
+                    data.data.forEach(e => {
+
+                        const first = e.first_punch ? new Date(e.first_punch).toLocaleTimeString() : '-';            animation: slideIn 0.3s ease;                </div>
+
+                        const last = e.last_punch ? new Date(e.last_punch).toLocaleTimeString() : '-';
+
+                        html += `<tr><td>${e.emp_id}</td><td>${e.name || '-'}</td><td>${e.department || '-'}</td><td>${e.punch_count}</td><td>${first}</td><td>${last}</td></tr>`;        .btn-secondary {
+
+                    });
+
+                    html += '</tbody></table>';            background: #f0f0f0;        }            </div>
+
+                }
+
+                document.getElementById('reports-container').innerHTML = html;            color: #333;
+
+            } catch (error) {
+
+                showAlert('error', 'Failed to generate report: ' + error.message);        }
+
+            }
+
+        }
+
+
+
+        async function loadEmployees() {        .btn-secondary:hover {        .alert-success {            <div class="card">
+
+            try {
+
+                const res = await fetch(`${apiUrl}/employees`, { headers: { 'Authorization': `Bearer ${token}` } });            background: #e0e0e0;
+
+                const employees = await res.json();
+
+        }            background: #d1e7dd;                <h3>Sync Attendance to HRMS</h3>
+
+                let html = '';
+
+                if (!employees || employees.length === 0) {
+
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No employees found</p>';
+
+                } else {        /* Loading Animation */            color: #0f5132;                <div class="form-group">
+
+                    html = `<table>
+
+                        <thead><tr><th>ID</th><th>Name</th><th>Department</th><th>Email</th><th>Status</th></tr></thead>        .loading {
+
+                        <tbody>`;
+
+                    employees.forEach(e => {            text-align: center;        }                    <label>Date Range</label>
+
+                        html += `<tr><td>${e.emp_id}</td><td>${e.name}</td><td>${e.department || '-'}</td><td>${e.email || '-'}</td><td><span class="badge badge-success">Active</span></td></tr>`;
+
+                    });            padding: 40px;
+
+                    html += '</tbody></table>';
+
+                }            color: #999;                    <div class="filter-row">
+
+                document.getElementById('employees-container').innerHTML = html;
+
+            } catch (error) {        }
+
+                showAlert('error', 'Failed to load employees: ' + error.message);
+
+            }        .alert-error {                        <input type="date" id="sync-start">
+
+        }
+
+        .spinner {
+
+        async function syncEmployeesFromHRMS() {
+
+            try {            display: inline-block;            background: #f8d7da;                        <input type="date" id="sync-end">
+
+                showAlert('info', '🔄 Syncing employees from HRMS...');
+
+                            width: 30px;
+
+                const res = await fetch(`${apiUrl}/sync/employees`, {
+
+                    method: 'POST',            height: 30px;            color: #842029;                    </div>
+
+                    headers: {
+
+                        'Authorization': `Bearer ${token}`,            border: 4px solid #f0f0f0;
+
+                        'Content-Type': 'application/json'
+
+                    },            border-top-color: #667eea;        }                </div>
+
+                    body: JSON.stringify({
+
+                        hrms_url: apiUrl.replace('/api/v1', ''),            border-radius: 50%;
+
+                        hrms_token: token
+
+                    })            animation: spin 1s linear infinite;                <button class="btn btn-primary" onclick="syncAttendanceToHRMS()">📤 Sync Attendance</button>
+
+                });
+
+        }
+
+                const data = await res.json();
+
+                        .alert-info {                <div id="sync-result" class="result-box" style="display:none;"></div>
+
+                if (res.ok) {
+
+                    showAlert('success', `✓ Synced ${data.synced || 0} employees from HRMS`);        @keyframes spin {
+
+                    await loadEmployees();
+
+                } else {            to {            background: #cfe2ff;            </div>
+
+                    showAlert('error', data.error || 'Sync failed');
+
+                }                transform: rotate(360deg);
+
+            } catch (error) {
+
+                showAlert('error', 'Sync error: ' + error.message);            }            color: #084298;
+
+            }
+
+        }        }
+
+
+
+        async function checkSyncStatus() {        }            <div class="card">
+
+            try {
+
+                const res = await fetch(`${apiUrl}/punch-history?limit=1000`, {        /* Alerts */
+
+                    headers: { 'Authorization': `Bearer ${token}` }
+
+                });        .alert {                <h3>API Integration Guide</h3>
+
+                const data = await res.json();
+
+            padding: 15px 20px;
+
+                const synced = data.data?.filter(p => p.synced).length || 0;
+
+                const pending = (data.count || 0) - synced;            border-radius: 10px;        .hidden {                <div class="guide-content">
+
+
+
+                document.getElementById('sync-status-container').innerHTML = `            margin-bottom: 15px;
+
+                    <div class="alert alert-info">
+
+                        <strong>📊 Sync Status</strong><br>            animation: slideDown 0.3s ease;            display: none !important;                    <h4>Endpoint: POST /api/attendance/punch</h4>
+
+                        Total Records: ${data.count || 0}<br>
+
+                        Synced: ${synced}<br>        }
+
+                        Pending: ${pending}
+
+                    </div>        }                    <pre><code>{
+
+                `;
+
+            } catch (error) {        @keyframes slideDown {
+
+                showAlert('error', 'Failed to check status: ' + error.message);
+
+            }            from {  "emp_id": "EMP001",
+
+        }
+
+                opacity: 0;
+
+        async function syncPunchesToHRMS() {
+
+            try {                transform: translateY(-20px);        .loading {  "punch_type": "IN",
+
+                showAlert('info', '📤 Syncing punches to HRMS...');
+
+                            }
+
+                const res = await fetch(`${apiUrl}/sync/hrms`, {
+
+                    method: 'POST',            to {            text-align: center;  "photo": "base64_encoded_image",
+
+                    headers: {
+
+                        'Authorization': `Bearer ${token}`,                opacity: 1;
+
+                        'Content-Type': 'application/json'
+
+                    },                transform: translateY(0);            padding: 40px;  "confidence": 0.95
+
+                    body: JSON.stringify({
+
+                        hrms_url: apiUrl.replace('/api/v1', ''),            }
+
+                        hrms_token: token
+
+                    })        }        }}</code></pre>
+
+                });
+
+
+
+                const data = await res.json();
+
+        .alert-success {
+
+                if (res.ok) {
+
+                    showAlert('success', `✓ Synced ${data.synced} punches to HRMS`);            background: #d1e7dd;
+
+                    document.getElementById('sync-result-container').innerHTML = `
+
+                        <div class="card">            color: #0f5132;        .spinner {                    <h4>Endpoint: GET /api/attendance</h4>
+
+                            <h3>✓ Sync Complete</h3>
+
+                            <div class="alert alert-success">        }
+
+                                <strong>Success!</strong><br>
+
+                                Synced: ${data.synced} records<br>            display: inline-block;                    <pre><code>?emp_id=EMP001&start_date=2024-01-01&end_date=2024-01-31</code></pre>
+
+                                Failed: ${data.failed || 0} records
+
+                            </div>        .alert-error {
+
+                        </div>
+
+                    `;            background: #f8d7da;            width: 20px;
+
+                    await checkSyncStatus();
+
+                } else {            color: #842029;
+
+                    showAlert('error', data.error || 'Sync failed');
+
+                    document.getElementById('sync-result-container').innerHTML = `        }            height: 20px;                    <h4>Endpoint: POST /api/sync-attendance</h4>
+
+                        <div class="card">
+
+                            <h3>✗ Sync Failed</h3>
+
+                            <div class="alert alert-error">${data.error || 'Unknown error'}</div>
+
+                        </div>        .alert-info {            border: 3px solid #f3f3f3;                    <pre><code>{
+
+                    `;
+
+                }            background: #cfe2ff;
+
+            } catch (error) {
+
+                showAlert('error', 'Sync error: ' + error.message);            color: #084298;            border-top: 3px solid #667eea;  "hrms_url": "http://your-hrms-server",
+
+            }
+
+        }        }
+
+
+
+        function switchTab(tabName) {            border-radius: 50%;  "endpoint": "/api/attendance",
+
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));        /* Input Styling */
+
+            document.querySelectorAll('.menu-link').forEach(m => m.classList.remove('active'));
+
+        input[type="date"],            animation: spin 1s linear infinite;  "start_date": "2024-01-01",
+
+            document.getElementById(tabName).classList.add('active');
+
+            event.target.classList.add('active');        input[type="month"],
+
+
+
+            const titles = {        input[type="text"] {        }  "end_date": "2024-01-31"
+
+                'overview': '📈 Dashboard Overview',
+
+                'punches': '📜 Punch Records',            padding: 12px;
+
+                'reports': '📊 Reports',
+
+                'employees': '👥 Employee Directory',            border: 2px solid #f0f0f0;}</code></pre>
+
+                'sync': '🔄 HRMS Sync',
+
+                'face-punch': '👤 Face Punch'            border-radius: 10px;
+
+            };
+
+            document.getElementById('page-title').textContent = titles[tabName] || 'Dashboard';            font-family: 'Poppins', sans-serif;        @keyframes spin {                </div>
+
+
+
+            if (tabName === 'punches') loadPunches();            font-size: 14px;
+
+            else if (tabName === 'employees') loadEmployees();
+
+            else if (tabName === 'reports') document.getElementById('reports-container').innerHTML = '<div class="loading"><div class="spinner"></div></div>';            transition: all 0.3s ease;            0% { transform: rotate(0deg); }            </div>
+
+        }
+
+        }
+
+        function showAlert(type, message) {
+
+            const container = document.getElementById('alert-container');            100% { transform: rotate(360deg); }        </section>
+
+            const alert = document.createElement('div');
+
+            alert.className = `alert alert-${type}`;        input[type="date"]:focus,
+
+            alert.innerHTML = message;
+
+            container.appendChild(alert);        input[type="month"]:focus,        }
+
+            setTimeout(() => alert.remove(), 4000);
+
+        }        input[type="text"]:focus {
+
+
+
+        function logout() {            outline: none;        <!-- Face Punch Test Section -->
+
+            localStorage.removeItem('biometric_token');
+
+            localStorage.removeItem('biometric_user');            border-color: #667eea;
+
+            window.location.href = '/login';
+
+        }            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);        @media (max-width: 768px) {        <section id="test" class="section">
+
+    </script>
+
+</body>        }
+
+</html>
+
+            .sidebar { width: 200px; }            <div class="section-header">
+
+        .filter-row {
+
+            display: grid;            .main-content { margin-left: 200px; }                <h2>Face Punch Test (Attendance)</h2>
+
+            grid-template-columns: auto auto auto auto;
+
+            gap: 10px;            .cards-grid { grid-template-columns: 1fr; }            </div>
+
+            margin-bottom: 20px;
+
+        }        }
+
+
+
+        /* Responsive */    </style>            <div class="card">
+
+        @media (max-width: 1024px) {
+
+            .container {</head>                <h3>Capture Face Punch</h3>
+
+                grid-template-columns: 1fr;
+
+            }<body>                <div class="test-container">
+
+
+
+            .sidebar {    <!-- Sidebar -->                    <div class="camera-section">
+
+                width: 250px;
+
+            }    <div class="sidebar">                        <video id="camera" autoplay playsinline></video>
+
+
+
+            .main-content {        <h2>📊 OpenBR</h2>                        <canvas id="canvas" style="display:none;"></canvas>
+
+                margin-left: 250px;
+
+                padding: 20px;        <ul class="nav-menu">                        <div class="camera-controls">
+
+            }
+
+            <li><a href="javascript:showTab('dashboard')" class="nav-link active">Dashboard</a></li>                            <button class="btn btn-primary" onclick="startCamera()">📷 Start Camera</button>
+
+            .stats-grid {
+
+                grid-template-columns: repeat(2, 1fr);            <li><a href="javascript:showTab('punch-history')" class="nav-link">Punch History</a></li>                            <button class="btn btn-warning" onclick="capturePhoto()">📸 Capture</button>
+
+            }
+
+            <li><a href="javascript:showTab('daily-report')" class="nav-link">Daily Report</a></li>                            <button class="btn btn-secondary" onclick="stopCamera()">Stop Camera</button>
+
+            .filter-row {
+
+                grid-template-columns: repeat(2, 1fr);            <li><a href="javascript:showTab('hrms-sync')" class="nav-link">HRMS Sync</a></li>                        </div>
+
+            }
+
+        }            <li><a href="javascript:showTab('employees')" class="nav-link">Employees</a></li>                    </div>
+
+
+
+        @media (max-width: 768px) {        </ul>
+
+            .container {
+
+                grid-template-columns: 1fr;    </div>                    <div class="punch-form-section">
+
+            }
+
+                        <div class="form-group">
+
+            .sidebar {
+
+                position: fixed;    <!-- Main Content -->                            <label>Select Employee</label>
+
+                left: -280px;
+
+                transition: left 0.3s ease;    <div class="main-content">                            <select id="punch-emp-id">
+
+                z-index: 2000;
+
+                width: 280px;        <!-- Top Bar -->                                <option value="">Loading employees...</option>
+
+            }
+
+        <div class="top-bar">                            </select>
+
+            .sidebar.active {
+
+                left: 0;            <h1 id="page-title">Dashboard</h1>                        </div>
+
+            }
+
+            <button class="btn-logout" onclick="logout()">Logout</button>                        <div class="form-group">
+
+            .main-content {
+
+                margin-left: 0;        </div>                            <label>Punch Type</label>
+
+                padding: 15px;
+
+            }                            <select id="punch-type">
+
+
+
+            .stats-grid {        <!-- Alert Container -->                                <option value="IN">IN (Start Work)</option>
+
+                grid-template-columns: 1fr;
+
+            }        <div id="alert-container"></div>                                <option value="OUT">OUT (End Work)</option>
+
+
+
+            .filter-row {                            </select>
+
+                grid-template-columns: 1fr;
+
+            }        <!-- Dashboard Tab -->                        </div>
+
+
+
+            .top-bar {        <div id="tab-dashboard" class="tab-content">                        <div class="form-group">
+
+                flex-direction: column;
+
+                gap: 15px;            <div class="cards-grid">                            <label>Confidence Level</label>
+
+                align-items: flex-start;
+
+            }                <div class="card">                            <input type="range" id="confidence-level" min="0.7" max="1.0" step="0.05" value="0.95">
+
+
+
+            .tab-navigation {                    <div class="card-header">Today's Punches</div>                            <span id="confidence-display">0.95</span>
+
+                flex-wrap: wrap;
+
+            }                    <div class="card-value" id="today-punches">0</div>                        </div>
+
+
+
+            table {                </div>                        <button class="btn btn-success btn-large" onclick="submitPunch()">✓ Submit Punch</button>
+
+                font-size: 12px;
+
+            }                <div class="card">                    </div>
+
+
+
+            table th,                    <div class="card-header">Total Employees</div>                </div>
+
+            table td {
+
+                padding: 10px;                    <div class="card-value" id="total-employees">0</div>
+
+            }
+
+        }                </div>                <div id="punch-result" class="result-box" style="display:none;"></div>
+
+    </style>
+
+</head>                <div class="card">            </div>
+
+<body>
+
+    <div class="container">                    <div class="card-header">Synced Punches</div>
+
+        <!-- Sidebar -->
+
+        <div class="sidebar">                    <div class="card-value" id="synced-punches">0</div>            <div class="card">
+
+            <div class="sidebar-brand">
+
+                <h2>📊 OpenBR</h2>                </div>                <h3>Captured Image Preview</h3>
+
+                <p>Attendance System</p>
+
+            </div>            </div>                <div id="image-preview" class="image-preview">
+
+            <ul class="nav-menu">
+
+                <li><a href="javascript:switchTab('dashboard')" class="nav-link active" onclick="switchTab('dashboard')">📈 Dashboard</a></li>                    <p class="placeholder">No image captured yet</p>
+
+                <li><a href="javascript:switchTab('punch-history')" class="nav-link" onclick="switchTab('punch-history')">📜 Punch History</a></li>
+
+                <li><a href="javascript:switchTab('daily-report')" class="nav-link" onclick="switchTab('daily-report')">📅 Daily Report</a></li>            <div class="section">                </div>
+
+                <li><a href="javascript:switchTab('monthly-report')" class="nav-link" onclick="switchTab('monthly-report')">📊 Monthly Report</a></li>
+
+                <li><a href="javascript:switchTab('hrms-sync')" class="nav-link" onclick="switchTab('hrms-sync')">🔄 HRMS Sync</a></li>                <div class="section-header">Recent Punches (Last 20)</div>            </div>
+
+                <li><a href="javascript:switchTab('employees')" class="nav-link" onclick="switchTab('employees')">👥 Employees</a></li>
+
+            </ul>                <div id="recent-punches-container">        </section>
+
+        </div>
+
+                    <div class="loading"><div class="spinner"></div></div>    </div>
+
+        <!-- Main Content -->
+
+        <div class="main-content">                </div>
+
+            <div class="top-bar">
+
+                <h1 id="page-title">Dashboard</h1>            </div>    <script src="/static/script.js"></script>
+
+                <button class="logout-btn" onclick="logout()">Logout</button>
+
+            </div>        </div></body>
+
+
+
+            <div id="alert-container"></div></html>
+
+
+
+            <!-- Dashboard Section -->        <!-- Punch History Tab -->
+
+            <section id="dashboard" class="section active">        <div id="tab-punch-history" class="tab-content hidden">
+
+                <div class="section-header">📈 Dashboard Overview</div>            <div class="section">
+
+                <div class="section-header">Punch History</div>
+
+                <div class="stats-grid">                <div id="punch-history-container">
+
+                    <div class="stat-card">                    <div class="loading"><div class="spinner"></div></div>
+
+                        <div class="stat-icon">👥</div>                </div>
+
+                        <div class="stat-label">Total Employees</div>            </div>
+
+                        <div class="stat-value" id="stat-employees">0</div>        </div>
+
+                    </div>
+
+                    <div class="stat-card">        <!-- Daily Report Tab -->
+
+                        <div class="stat-icon">✓</div>        <div id="tab-daily-report" class="tab-content hidden">
+
+                        <div class="stat-label">Today's Punches</div>            <div class="section">
+
+                        <div class="stat-value" id="stat-today">0</div>                <div class="section-header">Daily Report</div>
+
+                    </div>                <div>
+
+                    <div class="stat-card">                    <input type="date" id="report-date" onchange="loadDailyReport()">
+
+                        <div class="stat-icon">📊</div>                </div>
+
+                        <div class="stat-label">Total Records</div>                <div id="daily-report-container" style="margin-top: 20px;">
+
+                        <div class="stat-value" id="stat-records">0</div>                    <div class="loading"><div class="spinner"></div></div>
+
+                    </div>                </div>
+
+                    <div class="stat-card">            </div>
+
+                        <div class="stat-icon">⚡</div>        </div>
+
+                        <div class="stat-label">System Status</div>
+
+                        <div class="stat-value" id="stat-status">Running</div>        <!-- HRMS Sync Tab -->
+
+                    </div>        <div id="tab-hrms-sync" class="tab-content hidden">
+
+                </div>            <div class="section">
+
+                <div class="section-header">HRMS Synchronization</div>
+
+                <div class="card">                <button class="btn-sync" onclick="syncToHRMS()" style="margin-bottom: 20px;">🔄 Sync All Unsynced Punches to HRMS</button>
+
+                    <h3>📌 Recent Punches (Last 20)</h3>                <div id="sync-result-container"></div>
+
+                    <div id="recent-punches" class="table-responsive">            </div>
+
+                        <div class="loading"><div class="spinner"></div></div>        </div>
+
+                    </div>
+
+                </div>        <!-- Employees Tab -->
+
+            </section>        <div id="tab-employees" class="tab-content hidden">
+
+            <div class="section">
+
+            <!-- Punch History Section -->                <div class="section-header">Employees</div>
+
+            <section id="punch-history" class="section">                <div id="employees-container">
+
+                <div class="section-header">📜 Punch History</div>                    <div class="loading"><div class="spinner"></div></div>
+
+                </div>
+
+                <div class="card">            </div>
+
+                    <h3>Search & Filter</h3>        </div>
+
+                    <div class="filter-row">    </div>
+
+                        <input type="date" id="filter-start" placeholder="Start Date">
+
+                        <input type="date" id="filter-end" placeholder="End Date">    <script>
+
+                        <input type="text" id="filter-emp" placeholder="Employee ID">        let token = null;
+
+                        <button class="btn btn-primary" onclick="filterPunchHistory()">🔍 Filter</button>        const apiUrl = 'https://weary-crypt-5jrjxprjv5xhvxvq-5000.app.github.dev/api/v1';
+
+                    </div>
+
+                </div>        window.addEventListener('load', async () => {
+
+            token = localStorage.getItem('biometric_token');
+
+                <div class="card">            if (!token) {
+
+                    <h3>All Records</h3>                window.location.href = '/login';
+
+                    <div id="punch-history-list" class="table-responsive">                return;
+
+                        <div class="loading"><div class="spinner"></div></div>            }
+
+                    </div>
+
+                </div>            // Set today's date
+
+            </section>            document.getElementById('report-date').value = new Date().toISOString().split('T')[0];
+
+            
+
+            <!-- Daily Report Section -->            loadDashboard();
+
+            <section id="daily-report" class="section">        });
+
+                <div class="section-header">📅 Daily Report</div>
+
+        function showTab(tabName) {
+
+                <div class="card">            document.querySelectorAll('.tab-content').forEach(tab => {
+
+                    <h3>Select Date</h3>                tab.classList.add('hidden');
+
+                    <div class="filter-row">            });
+
+                        <input type="date" id="daily-date">            document.querySelectorAll('.nav-link').forEach(link => {
+
+                        <button class="btn btn-primary" onclick="loadDailyReport()">📊 Generate</button>                link.classList.remove('active');
+
+                    </div>            });
+
+                </div>
+
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+                <div class="card">            event.target.classList.add('active');
+
+                    <h3>Daily Report</h3>
+
+                    <div id="daily-report-list" class="table-responsive">            const titles = {
+
+                        <div class="loading"><div class="spinner"></div></div>                'dashboard': 'Dashboard',
+
+                    </div>                'punch-history': 'Punch History',
+
+                </div>                'daily-report': 'Daily Report',
+
+            </section>                'hrms-sync': 'HRMS Sync',
+
+                'employees': 'Employees'
+
+            <!-- Monthly Report Section -->            };
+
+            <section id="monthly-report" class="section">            document.getElementById('page-title').textContent = titles[tabName] || 'Dashboard';
+
+                <div class="section-header">📊 Monthly Report</div>
+
+            if (tabName === 'punch-history') loadPunchHistory();
+
+                <div class="card">            else if (tabName === 'employees') loadEmployees();
+
+                    <h3>Select Month</h3>        }
+
+                    <div class="filter-row">
+
+                        <input type="month" id="monthly-date">        async function loadDashboard() {
+
+                        <button class="btn btn-primary" onclick="loadMonthlyReport()">📊 Generate</button>            try {
+
+                    </div>                const today = new Date().toISOString().split('T')[0];
+
+                </div>                
+
+                // Get today's punches
+
+                <div class="card">                const punchRes = await fetch(
+
+                    <h3>Monthly Report</h3>                    `${apiUrl}/punch-history?start_date=${today}&end_date=${today}&limit=100`,
+
+                    <div id="monthly-report-list" class="table-responsive">                    { headers: { 'Authorization': `Bearer ${token}` } }
+
+                        <div class="loading"><div class="spinner"></div></div>                );
+
+                    </div>                const punchData = await punchRes.json();
+
+                </div>
+
+            </section>                // Get employees
+
+                const empRes = await fetch(
+
+            <!-- HRMS Sync Section -->                    `${apiUrl}/employees`,
+
+            <section id="hrms-sync" class="section">                    { headers: { 'Authorization': `Bearer ${token}` } }
+
+                <div class="section-header">🔄 HRMS Synchronization</div>                );
+
+                const employees = await empRes.json();
+
+                <div class="card">
+
+                    <h3>Sync Controls</h3>                document.getElementById('today-punches').textContent = punchData.count || 0;
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">                document.getElementById('total-employees').textContent = employees.length || 0;
+
+                        <button class="btn btn-primary" onclick="syncToHRMS()">🔄 Sync All Punches</button>                
+
+                        <button class="btn btn-secondary" onclick="checkSyncStatus()">✓ Check Status</button>                const syncedCount = punchData.data?.filter(p => p.synced).length || 0;
+
+                    </div>                document.getElementById('synced-punches').textContent = syncedCount;
+
+                </div>
+
+                loadRecentPunches();
+
+                <div id="sync-result" style="display: none;" class="card">            } catch (error) {
+
+                    <h3>Sync Result</h3>                showAlert('error', 'Failed to load dashboard');
+
+                    <div id="sync-message"></div>            }
+
+                </div>        }
+
+            </section>
+
+        async function loadRecentPunches() {
+
+            <!-- Employees Section -->            try {
+
+            <section id="employees" class="section">                const today = new Date().toISOString().split('T')[0];
+
+                <div class="section-header">👥 Employee Directory</div>                const res = await fetch(
+
+                    `${apiUrl}/punch-history?start_date=${today}&end_date=${today}&limit=20`,
+
+                <div class="card">                    { headers: { 'Authorization': `Bearer ${token}` } }
+
+                    <h3>All Employees</h3>                );
+
+                    <div id="employees-list" class="table-responsive">                const data = await res.json();
+
+                        <div class="loading"><div class="spinner"></div></div>
+
+                    </div>                let html = '';
+
+                </div>                if (!data.data || data.data.length === 0) {
+
+            </section>                    html = '<p>No punches today</p>';
+
+        </div>                } else {
+
+    </div>                    html = `<table>
+
+                        <thead>
+
+    <script>                            <tr>
+
+        const apiUrl = 'https://weary-crypt-5jrjxprjv5xhvxvq-5000.app.github.dev/api/v1';                                <th>Time</th>
+
+        let token = null;                                <th>Employee</th>
+
+                                <th>Type</th>
+
+        window.addEventListener('load', () => {                                <th>Confidence</th>
+
+            token = localStorage.getItem('biometric_token');                                <th>Status</th>
+
+            if (!token) {                            </tr>
+
+                window.location.href = '/login';                        </thead>
+
+                return;                        <tbody>`;
+
+            }                    data.data.forEach(punch => {
+
+                        const time = new Date(punch.timestamp).toLocaleTimeString();
+
+            // Set default dates                        const status = punch.synced ? '<span class="badge badge-success">Synced</span>' : '<span class="badge badge-warning">Pending</span>';
+
+            const today = new Date().toISOString().split('T')[0];                        html += `<tr>
+
+            document.getElementById('daily-date').value = today;                            <td>${time}</td>
+
+            document.getElementById('filter-end').value = today;                            <td>${punch.emp_id}</td>
+
+            const startDate = new Date();                            <td><span class="badge badge-info">${punch.punch_type}</span></td>
+
+            startDate.setDate(startDate.getDate() - 7);                            <td>${(punch.confidence * 100).toFixed(0)}%</td>
+
+            document.getElementById('filter-start').value = startDate.toISOString().split('T')[0];                            <td>${status}</td>
+
+            document.getElementById('monthly-date').value = today.slice(0, 7);                        </tr>`;
+
+                    });
+
+            loadDashboard();                    html += '</tbody></table>';
+
+        });                }
+
+
+
+        async function loadDashboard() {                document.getElementById('recent-punches-container').innerHTML = html;
+
+            try {            } catch (error) {
+
+                const today = new Date().toISOString().split('T')[0];                showAlert('error', 'Failed to load recent punches');
+
+            }
+
+                // Get today's punches        }
+
+                const punchRes = await fetch(
+
+                    `${apiUrl}/punch-history?start_date=${today}&end_date=${today}&limit=100`,        async function loadPunchHistory() {
+
+                    { headers: { 'Authorization': `Bearer ${token}` } }            try {
+
+                );                const res = await fetch(
+
+                const punchData = await punchRes.json();                    `${apiUrl}/punch-history?limit=100`,
+
+                    { headers: { 'Authorization': `Bearer ${token}` } }
+
+                // Get employees                );
+
+                const empRes = await fetch(                const data = await res.json();
+
+                    `${apiUrl}/employees`,
+
+                    { headers: { 'Authorization': `Bearer ${token}` } }                let html = '<table><thead><tr><th>Date/Time</th><th>Employee</th><th>Type</th><th>Confidence</th><th>Status</th></tr></thead><tbody>';
+
+                );                if (data.data) {
+
+                const employees = await empRes.json();                    data.data.forEach(punch => {
+
+                        const datetime = new Date(punch.timestamp).toLocaleString();
+
+                document.getElementById('stat-employees').textContent = employees.length || 0;                        const status = punch.synced ? '<span class="badge badge-success">✓ Synced</span>' : '<span class="badge badge-warning">⏳ Pending</span>';
+
+                document.getElementById('stat-today').textContent = punchData.count || 0;                        html += `<tr><td>${datetime}</td><td>${punch.emp_id}</td><td><span class="badge badge-info">${punch.punch_type}</span></td><td>${(punch.confidence * 100).toFixed(0)}%</td><td>${status}</td></tr>`;
+
+                document.getElementById('stat-records').textContent = punchData.count || 0;                    });
+
+                }
+
+                await loadRecentPunches();                html += '</tbody></table>';
+
+            } catch (error) {
+
+                showAlert('error', 'Failed to load dashboard: ' + error.message);                document.getElementById('punch-history-container').innerHTML = html;
+
+            }            } catch (error) {
+
+        }                showAlert('error', 'Failed to load punch history');
+
+            }
+
+        async function loadRecentPunches() {        }
+
+            try {
+
+                const today = new Date().toISOString().split('T')[0];        async function loadDailyReport() {
+
+                const res = await fetch(            const date = document.getElementById('report-date').value;
+
+                    `${apiUrl}/punch-history?start_date=${today}&end_date=${today}&limit=20`,            try {
+
+                    { headers: { 'Authorization': `Bearer ${token}` } }                const res = await fetch(
+
+                );                    `/reports/daily?date=${date}`,
+
+                const data = await res.json();                    { headers: { 'Authorization': `Bearer ${token}` } }
+
+                );
+
+                let html = '';                const data = await res.json();
+
+                if (!data.data || data.data.length === 0) {
+
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No punches today</p>';                let html = '<table><thead><tr><th>Employee ID</th><th>Name</th><th>Dept</th><th>Punches</th><th>First In</th><th>Last Out</th></tr></thead><tbody>';
+
+                } else {                if (data.data) {
+
+                    html = `<table>                    data.data.forEach(emp => {
+
+                        <thead>                        const first = emp.first_punch ? new Date(emp.first_punch).toLocaleTimeString() : '-';
+
+                            <tr>                        const last = emp.last_punch ? new Date(emp.last_punch).toLocaleTimeString() : '-';
+
+                                <th>Time</th>                        html += `<tr><td>${emp.emp_id}</td><td>${emp.name || '-'}</td><td>${emp.department || '-'}</td><td>${emp.punch_count}</td><td>${first}</td><td>${last}</td></tr>`;
+
+                                <th>Employee</th>                    });
+
+                                <th>Type</th>                }
+
+                                <th>Confidence</th>                html += '</tbody></table>';
+
+                                <th>Status</th>
+
+                            </tr>                document.getElementById('daily-report-container').innerHTML = html;
+
+                        </thead>            } catch (error) {
+
+                        <tbody>`;                showAlert('error', 'Failed to load daily report');
+
+                    data.data.forEach(punch => {            }
+
+                        const time = new Date(punch.timestamp).toLocaleTimeString();        }
+
+                        const status = punch.synced ? '<span class="badge badge-success">Synced</span>' : '<span class="badge badge-warning">Pending</span>';
+
+                        html += `<tr>        async function loadEmployees() {
+
+                            <td>${time}</td>            try {
+
+                            <td>${punch.emp_id}</td>                const res = await fetch(
+
+                            <td><span class="badge badge-info">${punch.punch_type}</span></td>                    `${apiUrl}/employees`,
+
+                            <td>${(punch.confidence * 100).toFixed(0)}%</td>                    { headers: { 'Authorization': `Bearer ${token}` } }
+
+                            <td>${status}</td>                );
+
+                        </tr>`;                const employees = await res.json();
+
+                    });
+
+                    html += '</tbody></table>';                let html = '<table><thead><tr><th>ID</th><th>Name</th><th>Dept</th></tr></thead><tbody>';
+
+                }                employees.forEach(emp => {
+
+                document.getElementById('recent-punches').innerHTML = html;                    html += `<tr><td>${emp.emp_id}</td><td>${emp.name}</td><td>${emp.department || '-'}</td></tr>`;
+
+            } catch (error) {                });
+
+                showAlert('error', 'Failed to load recent punches');                html += '</tbody></table>';
+
+            }
+
+        }                document.getElementById('employees-container').innerHTML = html;
+
+            } catch (error) {
+
+        async function filterPunchHistory() {                showAlert('error', 'Failed to load employees');
+
+            const startDate = document.getElementById('filter-start').value;            }
+
+            const endDate = document.getElementById('filter-end').value;        }
+
+            const empId = document.getElementById('filter-emp').value;
+
+        async function syncToHRMS() {
+
+            try {            try {
+
+                let url = `${apiUrl}/punch-history?start_date=${startDate}&end_date=${endDate}&limit=500`;                const res = await fetch(`${apiUrl}/sync/hrms`, {
+
+                if (empId) url += `&emp_id=${empId}`;                    method: 'POST',
+
+                    headers: {
+
+                const res = await fetch(url, { headers: { 'Authorization': `Bearer ${token}` } });                        'Authorization': `Bearer ${token}`,
+
+                const data = await res.json();                        'Content-Type': 'application/json'
+
+                    },
+
+                let html = '';                    body: JSON.stringify({
+
+                if (!data.data || data.data.length === 0) {                        hrms_url: 'https://weary-crypt-5jrjxprjv5xhvxvq-5000.app.github.dev/api/v1',
+
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No records found</p>';                        hrms_token: localStorage.getItem('biometric_token')
+
+                } else {                    })
+
+                    html = `<table>                });
+
+                        <thead>
+
+                            <tr>                const data = await res.json();
+
+                                <th>Date/Time</th>
+
+                                <th>Employee</th>                if (res.ok) {
+
+                                <th>Type</th>                    showAlert('success', `✓ Synced ${data.synced} punches to HRMS`);
+
+                                <th>Confidence</th>                    document.getElementById('sync-result-container').innerHTML = `
+
+                                <th>Status</th>                        <div class="alert alert-success">
+
+                            </tr>                            <strong>Sync Successful!</strong><br>
+
+                        </thead>                            Synced: ${data.synced} records<br>
+
+                        <tbody>`;                            Failed: ${data.failed} records
+
+                    data.data.forEach(punch => {                        </div>
+
+                        const datetime = new Date(punch.timestamp).toLocaleString();                    `;
+
+                        const status = punch.synced ? '<span class="badge badge-success">✓ Synced</span>' : '<span class="badge badge-warning">⏳ Pending</span>';                    loadDashboard();
+
+                        html += `<tr>                } else {
+
+                            <td>${datetime}</td>                    showAlert('error', data.error || 'Sync failed');
+
+                            <td>${punch.emp_id}</td>                }
+
+                            <td><span class="badge badge-info">${punch.punch_type}</span></td>            } catch (error) {
+
+                            <td>${(punch.confidence * 100).toFixed(0)}%</td>                showAlert('error', 'Sync error: ' + error.message);
+
+                            <td>${status}</td>            }
+
+                        </tr>`;        }
+
+                    });
+
+                    html += '</tbody></table>';        function showAlert(type, message) {
+
+                }            const container = document.getElementById('alert-container');
+
+                document.getElementById('punch-history-list').innerHTML = html;            const alertDiv = document.createElement('div');
+
+            } catch (error) {            alertDiv.className = `alert alert-${type}`;
+
+                showAlert('error', 'Failed to load punch history');            alertDiv.innerHTML = message;
+
+            }            container.appendChild(alertDiv);
+
+        }
+
+            setTimeout(() => alertDiv.remove(), 4000);
+
+        async function loadDailyReport() {        }
+
+            const date = document.getElementById('daily-date').value;
+
+            try {        function logout() {
+
+                const res = await fetch(`/reports/daily?date=${date}`, {            localStorage.removeItem('biometric_token');
+
+                    headers: { 'Authorization': `Bearer ${token}` }            localStorage.removeItem('biometric_user');
+
+                });            window.location.href = '/login';
+
+                const data = await res.json();        }
+
+    </script>
+
+                let html = '';</body>
+
+                if (!data.data || data.data.length === 0) {</html>
+
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No data for this date</p>';
+                } else {
+                    html = `<table>
+                        <thead>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Dept</th>
+                                <th>Punches</th>
+                                <th>First In</th>
+                                <th>Last Out</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+                    data.data.forEach(emp => {
+                        const first = emp.first_punch ? new Date(emp.first_punch).toLocaleTimeString() : '-';
+                        const last = emp.last_punch ? new Date(emp.last_punch).toLocaleTimeString() : '-';
+                        html += `<tr>
+                            <td>${emp.emp_id}</td>
+                            <td>${emp.name || '-'}</td>
+                            <td>${emp.department || '-'}</td>
+                            <td>${emp.punch_count}</td>
+                            <td>${first}</td>
+                            <td>${last}</td>
+                        </tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+                document.getElementById('daily-report-list').innerHTML = html;
+            } catch (error) {
+                showAlert('error', 'Failed to load daily report');
+            }
+        }
+
+        async function loadMonthlyReport() {
+            const month = document.getElementById('monthly-date').value;
+            try {
+                const res = await fetch(`/reports/monthly?month=${month}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await res.json();
+
+                let html = '';
+                if (!data.data || data.data.length === 0) {
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No data for this month</p>';
+                } else {
+                    html = `<table>
+                        <thead>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Dept</th>
+                                <th>Total Punches</th>
+                                <th>Work Days</th>
+                                <th>Avg Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+                    data.data.forEach(emp => {
+                        html += `<tr>
+                            <td>${emp.emp_id}</td>
+                            <td>${emp.name || '-'}</td>
+                            <td>${emp.department || '-'}</td>
+                            <td>${emp.punch_count}</td>
+                            <td>${emp.work_days || '-'}</td>
+                            <td>${emp.avg_time || '-'}</td>
+                        </tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+                document.getElementById('monthly-report-list').innerHTML = html;
+            } catch (error) {
+                showAlert('error', 'Failed to load monthly report');
+            }
+        }
+
+        async function syncToHRMS() {
+            try {
+                const res = await fetch(`${apiUrl}/sync/hrms`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        hrms_url: apiUrl.replace('/api/v1', ''),
+                        hrms_token: token
+                    })
+                });
+
+                const data = await res.json();
+                const resultDiv = document.getElementById('sync-result');
+                const messageDiv = document.getElementById('sync-message');
+
+                if (res.ok) {
+                    showAlert('success', `✓ Synced ${data.synced} punches to HRMS`);
+                    messageDiv.innerHTML = `<div class="alert alert-success"><strong>✓ Sync Successful!</strong><br>Synced: ${data.synced} records<br>Failed: ${data.failed || 0} records</div>`;
+                } else {
+                    showAlert('error', data.error || 'Sync failed');
+                    messageDiv.innerHTML = `<div class="alert alert-error"><strong>✗ Sync Failed!</strong><br>${data.error || 'Unknown error'}</div>`;
+                }
+                resultDiv.style.display = 'block';
+            } catch (error) {
+                showAlert('error', 'Sync error: ' + error.message);
+            }
+        }
+
+        async function checkSyncStatus() {
+            try {
+                const res = await fetch(`${apiUrl}/punch-history?limit=1000`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await res.json();
+
+                const synced = data.data?.filter(p => p.synced).length || 0;
+                const pending = (data.count || 0) - synced;
+
+                const messageDiv = document.getElementById('sync-message');
+                messageDiv.innerHTML = `<div class="alert alert-info"><strong>📊 Sync Status</strong><br>Synced: ${synced}<br>Pending: ${pending}</div>`;
+                document.getElementById('sync-result').style.display = 'block';
+            } catch (error) {
+                showAlert('error', 'Failed to check sync status');
+            }
+        }
+
+        function switchTab(tabName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+            // Update nav links
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            event.target.classList.add('active');
+            // Update page title
+            const titles = {
+                'dashboard': '📈 Dashboard',
+                'punch-history': '📜 Punch History',
+                'daily-report': '📅 Daily Report',
+                'monthly-report': '📊 Monthly Report',
+                'hrms-sync': '🔄 HRMS Sync',
+                'employees': '👥 Employees'
+            };
+            document.getElementById('page-title').textContent = titles[tabName] || 'Dashboard';
+
+            if (tabName === 'punch-history') filterPunchHistory();
+            else if (tabName === 'daily-report') loadDailyReport();
+            else if (tabName === 'monthly-report') loadMonthlyReport();
+            else if (tabName === 'employees') loadEmployees();
+        }
+
+        async function loadEmployees() {
+            try {
+                const res = await fetch(`${apiUrl}/employees`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const employees = await res.json();
+
+                let html = '';
+                if (!employees || employees.length === 0) {
+                    html = '<p style="text-align: center; padding: 40px; color: #999;">No employees found</p>';
+                } else {
+                    html = `<table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+                    employees.forEach(emp => {
+                        html += `<tr>
+                            <td>${emp.emp_id}</td>
+                            <td>${emp.name}</td>
+                            <td>${emp.department || '-'}</td>
+                            <td>${emp.email || '-'}</td>
+                        </tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+                document.getElementById('employees-list').innerHTML = html;
+            } catch (error) {
+                showAlert('error', 'Failed to load employees');
+            }
+        }
+
+        function showAlert(type, message) {
+            const container = document.getElementById('alert-container');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = message;
+            container.appendChild(alert);
+
+            setTimeout(() => alert.remove(), 4000);
+        }
+
+        function logout() {
+            localStorage.removeItem('biometric_token');
+            localStorage.removeItem('biometric_user');
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+</html>

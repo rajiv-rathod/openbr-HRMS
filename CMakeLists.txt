@@ -85,7 +85,7 @@ endforeach()
 set(BR_THIRDPARTY_LIBS ${BR_THIRDPARTY_LIBS} ${Qt5Core_QTMAIN_LIBRARIES})
 
 # Find OpenCV
-find_package(OpenCV 2.4.5 REQUIRED)
+find_package(OpenCV REQUIRED)
 set(OPENCV_DEPENDENCIES opencv_core opencv_highgui opencv_imgproc opencv_ml opencv_objdetect)
 set(BR_THIRDPARTY_LIBS ${BR_THIRDPARTY_LIBS} ${OPENCV_DEPENDENCIES})
 

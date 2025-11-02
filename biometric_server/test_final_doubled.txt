@@ -1,0 +1,4 @@
+Status: 200
+Redirects: [(307, '/api/v1/api-token-auth/')]
+✅ Token received after redirect!
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...

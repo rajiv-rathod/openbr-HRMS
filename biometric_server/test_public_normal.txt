@@ -1,0 +1,3 @@
+Status: 200
+✅ Token received from public URL!
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...
